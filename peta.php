@@ -46,7 +46,7 @@
 						$nomor_handphone=$d['nomor_handphone'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi<br>$alamat<br>$nomor_handphone');\n");
+						echo "$latitude, $longtitude";
 					}
 				?>
 			}
