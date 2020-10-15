@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>maribelajarcoding.com</title>
+    <title>Peta</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>      
@@ -26,13 +26,13 @@
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          downloadUrl('http://localhost/www/SIG_Bubble_Drink_Admin/data-xml.php', function(data) {
+          downloadUrl('http://localhost/SIG_Bubble_Drink/data-xml.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
 
             Array.prototype.forEach.call(markers, function(markerElem) {
               var id_lokasi = markerElem.getAttribute('id_lokasi');
-              var nama_lokasi = markerElem.getAttribute('nama_pariwisata');
+              var nama_lokasi = markerElem.getAttribute('nama_lokasi');
               var alamat = markerElem.getAttribute('alamat');
               var nomor_handphone=markerElem.getAttribute('nomor_handphone');
               var point = new google.maps.LatLng(
@@ -76,7 +76,7 @@
       }
       function doNothing() {}
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc64FYvZwdFnypCq-bRELbKFTHGprzSKI&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsNDm211FpwDyX5QM8YO_wC5wdt0_vTHw&callback=initMap"
     async defer></script>
   </body>
 </html>

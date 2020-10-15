@@ -4,7 +4,7 @@
 	include("koneksi.php");
 
 	$sql="SELECT * FROM tb_lokasi";
-	$query=mysql_query($sql) or die(mysql_error());
+	$query=mysqli_query($koneksi,$sql);
 
 	$array=array();
 	while($data=mysql_fetch_assoc($query)) $array[]=$data;	
