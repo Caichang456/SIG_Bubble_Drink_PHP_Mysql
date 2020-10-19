@@ -10,7 +10,7 @@
 		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
 		<a href="profil.php">Profil</a>
 		<h1>Cari Bubble Drink</h1>
-		<form action="akun.php" action="POST">
+		<form method="POST">
 			<input type="type" name="txt_cari_bubble_drink" placeholder="Cari Apa?">
 			<input type="submit" name="submit" value="Cari">
 		</form>
@@ -26,21 +26,37 @@
 			</tr>
 			<?php
 				include"koneksi.php";
-				$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
-				while($d=mysqli_fetch_array($data)){ ?>
-					<tr>
-						<td><?php echo $d['id_bubble_drink']; ?></td>
-						<td><?php echo $d['id_lokasi']; ?></td>
-						<td><?php echo $d['nama']; ?></td>
-						<td><?php echo $d['harga']; ?></td>
-						<td><?php echo $d['diskon']; ?></td>
-						<td>
-							<a href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah Bubble Drink</a> |
-							<a href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Hapus Bubble Drink</a>
-						</td>
-					</tr>
-				<?php }
-			?>
+				if(!isset($_POST['submit'])){
+					$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
+					while($d=mysqli_fetch_array($data)){ ?>
+						<tr>
+							<td><?php echo $d['id_bubble_drink']; ?></td>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nama']; ?></td>
+							<td><?php echo $d['harga']; ?></td>
+							<td><?php echo $d['diskon']; ?></td>
+							<td>
+								<a href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah Bubble Drink</a> |
+								<a href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Hapus Bubble Drink</a>
+							</td>
+						</tr>
+					<?php } } ?>
+				<?php if(isset($_POST['submit'])){
+					$cari_bubble_drink=$_POST['txt_cari_bubble_drink'];
+					$data=mysqli_query($koneksi,"select * from tb_bubble_drink where nama like'%$cari_bubble_drink%' or harga like'%$cari_bubble_drink%' or diskon like '%$cari_bubble_drink%'");
+					while($d=mysqli_fetch_array($data)){ ?>
+						<tr>
+							<td><?php echo $d['id_bubble_drink']; ?></td>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nama']; ?></td>
+							<td><?php echo $d['harga']; ?></td>
+							<td><?php echo $d['diskon']; ?></td>
+							<td>
+								<a href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah Bubble Drink</a> |
+								<a href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Hapus Bubble Drink</a>
+							</td>
+						</tr>
+					<?php } } ?>
 		</table>
 	</body>
 </html>
