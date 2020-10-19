@@ -6,7 +6,7 @@
 	<body>
 		<a href="cari_akun.php">Akun</a> |
 		<a href="cari_lokasi.php">Lokasi</a> |
-		<a href="cari_bubble_drink.php">Lokasi</a> |
+		<a href="cari_bubble_drink.php">Bubble Drink</a> |
 		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
 		<a href="profil.php">Profil</a>
 		<h1>Cari Akun</h1>
