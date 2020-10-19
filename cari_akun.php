@@ -24,6 +24,7 @@
 				<th>Hobby</th>
 				<th colspan="3">Tanggal Lahir</th>
 				<th>Blokir</th>
+				<th>Status</th>
 				<th>Aksi</th>
 			</tr>
 			<?php
@@ -50,7 +51,7 @@
 					<?php } } ?>
 					<?php if(isset($_POST['submit'])){
 						$cari_akun=$_POST['txt_cari_akun'];
-						$data=mysqli_query($koneksi,"select * from tb_user where user_name like '%$cari_akun%'");
+						$data=mysqli_query($koneksi,"select * from tb_user where user_name like '%$cari_akun%' or nama_depan like '%$cari_akun%' or nama_tengah like '%$cari_akun%' or nama_belakang like '%$cari_akun%' or hobby like '%$cari_akun%' or tanggal_lahir like '%$cari_akun%' or bulan_lahir like '%$cari_akun%' or tahun_lahir like '%$cari_akun%' or status like '%$cari_akun%'");
 						while($d=mysqli_fetch_array($data)){ ?>
 							<tr>
 								<td><?php echo $d['id_user']; ?></td>
