@@ -74,6 +74,15 @@
 					<td colspan="3"><input type="password" name="txt_password" placeholder="Password" required="required"></td>
 				</tr>
 				<tr>
+					<td colspan="3">
+						<select name="status">
+							<option value="">Pilih Status</option>
+							<option value="Admin">Admin</option>
+							<option value="User">User</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="3"><input type="submit" name="btn_daftar" value="Daftar"></td>
 				</tr>
 			</table>
