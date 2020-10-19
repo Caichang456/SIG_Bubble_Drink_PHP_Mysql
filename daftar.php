@@ -18,7 +18,7 @@
 		echo "Email atau Username yang anda masukkan sudah ada di database";
 	}
 	else{
-		mysqli_query($koneksi,"INSERT INTO tb_user(id_user,email,user_name,password,blokir,jenis_kelamin,hobby,tanggal_lahir,bulan_lahir,tahun_lahir,nama_depan,nama_tengah,nama_belakang) VALUES('$id_user','$email','$username','$password','Tidak','$jenis_kelamin','$hobby','$tanggal_lahir','$bulan_lahir',$tahun_lahir,'$nama_depan','$nama_tengah','$nama_belakang')");
+		mysqli_query($koneksi,"INSERT INTO tb_user(id_user,email,user_name,password,blokir,jenis_kelamin,hobby,tanggal_lahir,bulan_lahir,tahun_lahir,nama_depan,nama_tengah,nama_belakang,status) VALUES('$id_user','$email','$username','$password','Tidak','$jenis_kelamin','$hobby','$tanggal_lahir','$bulan_lahir',$tahun_lahir,'$nama_depan','$nama_tengah','$nama_belakang','$status')");
 		echo "Data berhasil di daftar";
 		header("location:index.php");
 	}
