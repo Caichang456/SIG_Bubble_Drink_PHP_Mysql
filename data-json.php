@@ -7,7 +7,7 @@
 	$query=mysqli_query($koneksi,$sql);
 
 	$array=array();
-	while($data=mysql_fetch_assoc($query)) $array[]=$data;	
+	while($data=mysqli_fetch_assoc($query)) $array[]=$data;	
 	
 	echo json_encode($array);
 ?>
