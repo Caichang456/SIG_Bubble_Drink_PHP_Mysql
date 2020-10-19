@@ -10,7 +10,7 @@
 		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
 		<a href="profil.php">Profil</a>
 		<h1>Cari Lokasi</h1>
-		<form action="akun.php" action="POST">
+		<form method="POST">
 			<input type="type" name="txt_cari_lokasi" placeholder="Cari Apa?">
 			<input type="submit" name="submit" value="Cari">
 		</form>
@@ -28,21 +28,40 @@
 			</tr>
 			<?php
 				include"koneksi.php";
-				$data=mysqli_query($koneksi,"select * from tb_lokasi");
-				while($d=mysqli_fetch_array($data)){ ?>
-					<tr>
-						<td><?php echo $d['id_lokasi']; ?></td>
-						<td><?php echo $d['nama_lokasi']; ?></td>
-						<td><?php echo $d['alamat']; ?></td>
-						<td><?php echo $d['nomor_handphone']; ?></td>
-						<td><?php echo $d['longtitude']; ?></td>
-						<td><?php echo $d['latitude']; ?></td>
-						<td>
-							<a href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah Lokasi</a>|
-							<a href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus Lokasi</a>
-						</td>
-					</tr>
-				<?php }
+				if(!isset($_POST['submit'])){
+					$data=mysqli_query($koneksi,"select * from tb_lokasi");
+					while($d=mysqli_fetch_array($data)){ ?>
+						<tr>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
+							<td><?php echo $d['longtitude']; ?></td>
+							<td><?php echo $d['latitude']; ?></td>
+							<td>
+								<a href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah Lokasi</a>|
+								<a href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus Lokasi</a>
+							</td>
+						</tr>
+					<?php } } ?>
+				<?php if(isset($_POST['submit'])){
+					$lokasi=$_POST['txt_cari_lokasi'];
+					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
+					while($d=mysqli_fetch_array($data)){ ?>
+						<tr>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
+							<td><?php echo $d['longtitude']; ?></td>
+							<td><?php echo $d['latitude']; ?></td>
+							<td>
+								<a href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah Lokasi</a>|
+								<a href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus Lokasi</a>
+							</td>
+						</tr>
+					<?php } } ?>
+
 			?>
 		</table>
 	</body>
