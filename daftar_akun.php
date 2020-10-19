@@ -29,6 +29,7 @@
 				<tr>
 					<td colspan="3">
 						<select name="jenis_kelamin">
+							<option value="">Pilih Jenis Kelamin</option>
 							<option value="laki-laki">Laki-Laki</option>
 							<option value="perempuan">Perempuan</option>
 						</select>
@@ -37,6 +38,7 @@
 				<tr>
 					<td>
 						<select name="tanggal_lahir">
+							<option value="">Pilih Tanggal Lahir</option>
 							<?php
 								for($i=1;$i<=31;$i++){
 									echo "<option value=\"$i\">$i</option>";
@@ -46,6 +48,7 @@
 					</td>
 					<td>
 						<select name="bulan_lahir">
+							<option value="">Pilih Bulan Lahir</option>
 							<?php
 								for($i=1;$i<=12;$i++){
 									echo "<option value=\"$i\">$i</option>";
@@ -55,6 +58,7 @@
 					</td>
 					<td>
 						<select name="tahun_lahir">
+							<option value="">Pilih Tahun Lahir</option>
 							<?php
 								for($i=date('Y');$i>=1;$i--){
 									echo "<option value=\"$i\">$i</option>";
