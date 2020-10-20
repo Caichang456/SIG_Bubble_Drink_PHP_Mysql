@@ -15,7 +15,7 @@
 				var mapCanvas=document.getElementById('map-canvas');
 				var mapOptions={
 					mapsTypeId:google.maps.MapTypeId.ROADMAP,
-					//center:new google.maps.LatLng(3.599591,98.706707),
+					center:new google.maps.LatLng(3.599591,98.706707),
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -25,6 +25,7 @@
 					google.maps.event.addListener(marker, 'click', function(){
 						infoWindow.setContent(html);
 						infoWindow.open(map, marker);
+					
 					});
 				}
 				function addMarker(latitude, longtitude, info){
@@ -44,7 +45,7 @@
 						$nomor_handphone=$d['nomor_handphone'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi\n$nomor_handphone\n$alamat');\n");
+						echo ("addMarker($latitude,$longtitude,'$nama_lokasi $nomor_handphone $alamat');\n");
 					}
 				?>
 			}
@@ -54,5 +55,25 @@
 	<body>
 		<div id="map-canvas"></div>
 		<h1>Detail Bubble Drink</h1>
+		<table width="1">
+			<tr>
+				<th>Nama Bubble Drink</th>
+				<th>Nama Lokasi</th>
+				<th>Rating</th>
+				<th>Komentar User</th>
+				<th>Komentar Admin</th>
+				<th>Aksi</th>
+			</tr>
+			<form action="simpan_komentar_user.php" method="POST">
+				<tr>
+					<td><input type="text" name="txt_nama_bubble_drink" disabled="disabled"></td>
+					<td><input type="text" name="txt_nama_lokasi" disabled="disabled"></td>
+					<td><input type="text" name="txt_rating" disabled="disabled"></td>
+					<td><input type="text" name="txt_komentar_user"></td>
+					<td><input type="text" name="txt_komentar_admin" disabled="disabled"></td>
+					<td><input type="submit" name="submit" value="Simpan"></td>
+				</tr>
+			</form>
+		</table>
 	</body>
 </html>

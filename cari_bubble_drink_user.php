@@ -31,7 +31,7 @@
 							<td><?php echo $d['nama']; ?></td>
 							<td><?php echo $d['harga']; ?></td>
 							<td><?php echo $d['diskon']; ?></td>
-							<td><a href="detail_bubble_drink.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Detail Bubble Drink</a></td>
+							<td><a href="detail_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail Bubble Drink</a></td>
 						</tr>
 					<?php }
 				} ?>
