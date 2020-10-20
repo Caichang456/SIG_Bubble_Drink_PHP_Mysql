@@ -74,6 +74,23 @@
 					<td><input type="submit" name="submit" value="Simpan"></td>
 				</tr>
 			</form>
+			<?php
+				include "koneksi.php";
+				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
+				while($d=mysqli_fetch_array($data)){ ?>
+					<tr>
+						<td><?php echo $d['id_bubble_drink']; ?></td>
+						<td><?php echo $d['id_lokasi']; ?></td>
+						<td><?php echo $d['rating']; ?></td>
+						<td><?php echo $d['komentar_user']; ?></td>
+						<td><?php echo $d['komentar_admin']; ?></td>
+						<td>
+							<a href="ubah_komentar_user.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah Komentar User</a> |
+							<a href="hapus_komentar_user.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus Komentar User</a>
+						</td>
+					</tr>
+				<?php }
+			?>
 		</table>
 	</body>
 </html>
