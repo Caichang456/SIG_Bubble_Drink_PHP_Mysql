@@ -8,7 +8,7 @@
 		<a href="cari_lokasi.php">Lokasi</a> |
 		<a href="cari_bubble_drink.php">Bubble Drink</a> |
 		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
-		<a href="profil.php">Profil</a>
+		<a href="logoout.php">Logout</a>
 		<h1>Cari Lokasi</h1>
 		<form method="POST">
 			<input type="type" name="txt_cari_lokasi" placeholder="Cari Apa?">

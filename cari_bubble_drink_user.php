@@ -4,6 +4,7 @@
 		<title>Cari Bubble Drink User</title>
 	</head>
 	<body>
+		<a href="logout.php">Logout</a>
 		<h1>Cari Bubble Drink</h1>
 		<form method="POST">
 			<table>
