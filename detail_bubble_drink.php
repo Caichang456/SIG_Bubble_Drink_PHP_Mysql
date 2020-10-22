@@ -1,3 +1,6 @@
+<?php
+	include "koneksi.php";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -37,7 +40,6 @@
 					});
 				}
 				<?php
-					include "koneksi.php";
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){
 						$nama_lokasi=$d['nama_lokasi'];
@@ -57,6 +59,7 @@
 		<h1>Detail Bubble Drink</h1>
 		<table width="1">
 			<tr>
+				<th>ID Komentar</th>
 				<th>Nama Bubble Drink</th>
 				<th>Nama Lokasi</th>
 				<th>Rating</th>
@@ -66,19 +69,48 @@
 			</tr>
 			<form action="simpan_komentar_user.php" method="POST">
 				<tr>
-					<td><input type="text" name="txt_nama_bubble_drink" disabled="disabled"></td>
-					<td><input type="text" name="txt_nama_lokasi" disabled="disabled"></td>
-					<td><input type="text" name="txt_rating" disabled="disabled"></td>
+					<td>
+						<input type="text" name="txt_id_komentar" placeholder="ID Komentar">
+					</td>
+					<td>
+						<select name="bubble_drink">
+							<?php
+								$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
+								while($d=mysqli_fetch_array($data)){ ?>
+									<option value="<?php echo $d['id_bubble_drink']; ?>"><?php echo $d['nama']; ?></option>
+								<?php }
+							?>
+						</select>
+					</td>
+					<td>
+						<select name="lokasi">
+							<?php
+								$data=mysqli_query($koneksi,"select * from tb_lokasi");
+								while($d=mysqli_fetch_array($data)){ ?>
+									<option value="<?php echo $d['id_lokasi']; ?>"><?php echo $d['nama_lokasi']; echo $d['nomor_handphone'];?></option>
+								<?php }
+							?>
+						</select>
+					</td>
+					<td>
+						<select name="rating">
+							<?php
+								for($i=1;$i<=5;$i++){
+									echo "<option value=\"$i\">$i</option>";
+								}
+							?>
+						</select>
+					</td>
 					<td><input type="text" name="txt_komentar_user"></td>
 					<td><input type="text" name="txt_komentar_admin" disabled="disabled"></td>
 					<td><input type="submit" name="submit" value="Simpan"></td>
 				</tr>
 			</form>
 			<?php
-				include "koneksi.php";
 				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
 				while($d=mysqli_fetch_array($data)){ ?>
 					<tr>
+						<td><?php echo $d['id_komentar']; ?></td>
 						<td><?php echo $d['id_bubble_drink']; ?></td>
 						<td><?php echo $d['id_lokasi']; ?></td>
 						<td><?php echo $d['rating']; ?></td>
