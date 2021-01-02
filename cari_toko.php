@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 		<style type="text/css">
 			#map-canvas{
-				width: 500px;
+				width: 100%;
 				height: 500px;
 			}
 		</style>
@@ -88,7 +88,7 @@
 				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
-			<form>
+			<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi()">
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
 					<td>
@@ -103,7 +103,7 @@
 						</select>
 					</td>
 					<th><input type="text" name="txt_alamat" placeholder="Nomor Handphone"></th>
-					<th><input class="btn btn-primary" type="submit" name="simpan" value="Simpan"></th>
+					<th><input class="btn btn-primary" type="submit" name="simpan_toko" value="Simpan"></th>
 				</tr>
 			</form>
 			<?php
@@ -118,31 +118,61 @@
 					$posisi = ($halaman-1) * $batas;
 				}
 				if(!isset($_POST['submit'])){
-					$data=mysqli_query($koneksi,"select * from tb_toko limit $batas");
+					$data=mysqli_query($koneksi,"select * from tb_toko");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td><?php echo $d['nama_toko']; ?></td>
-							<td><?php echo $d['id_lokasi']; ?></td>
-							<td><?php echo $d['nomor_handphone']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
-							</td>
-						</tr>
+						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+							<tr>
+								<td>
+									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
+									<input type="text" name="txt_nama_toko" value="<?php echo $d['nama_toko']; ?>">	
+								</td>
+								<td>
+									<select name="s_lokasi">
+										<?php
+											include"koneksi.php";
+											$data2=mysqli_query($koneksi,"select * from tb_lokasi");
+											while($d2=mysqli_fetch_array($data2)){ ?>
+												<option value="<?=$d2['id_lokasi'];?>"><?=$d2['nama_lokasi'];?></option>
+											<?php }
+										?>
+									</select>
+								</td>
+								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
+									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
+								</td>
+							</tr>
+						</form>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_toko where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td><?php echo $d['nama_toko']; ?></td>
-							<td><?php echo $d['id_lokasi']; ?></td>
-							<td><?php echo $d['nomor_handphone']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus</a>
-							</td>
-						</tr>
+						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+							<tr>
+								<td>
+									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
+									<input type="text" name="txt_nama_toko" value="<?php echo $d['nama_toko']; ?>">	
+								</td>
+								<td>
+									<select name="s_lokasi">
+										<?php
+											include"koneksi.php";
+											$data2=mysqli_query($koneksi,"select * from tb_lokasi");
+											while($d2=mysqli_fetch_array($data2)){ ?>
+												<option value="<?=$d2['id_lokasi'];?>"><?=$d2['nama_lokasi'];?></option>
+											<?php }
+										?>
+									</select>
+								</td>
+								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
+									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
+								</td>
+							</tr>
+						</form>
 					<?php } }
 
 			?>
