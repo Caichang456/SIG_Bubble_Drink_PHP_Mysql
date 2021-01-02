@@ -93,7 +93,7 @@
 								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
-									<input class="btn btn-danger" type="submit" name="hapus_bubble_drink" value="Hapus">
+									<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 								</td>
 							</tr>
 						</form>
@@ -121,7 +121,7 @@
 								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
-									<input class="btn btn-danger" type="submit" name="hapus_bubble_drink" value="Hapus">
+									<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 								</td>
 							</tr>
 						</form>
