@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	</head>
 	<body>
 		<form action="login.php" method="POST">

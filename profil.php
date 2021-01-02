@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Daftar Akun</title>
+		<title>Profil</title>
 		<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
 		<script type="text/javascript" src="jquery-3.5.1.js"></script>
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="cari_akun.php">Akun</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_lokasi.php">Lokasi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_toko.php">Toko</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_bubble_drink.php">Bubble Drink</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="profil.php">Profil</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<form name="form_daftar" method="POST" action="daftar.php" onsubmit="return validasi()">
-			<h1>Daftar Akun</h1>
+			<h1>Profile</h1>
 			<table>
 				<tr>
 					<td><input type="text" name="txt_email" placeholder="Email"></td>
@@ -65,6 +89,7 @@
 				</tr>
 			</table>
 		</form>
+		<a class="btn btn-danger" href="logout.php">Logout</a>
 	</body>
 	<script type="text/javascript">
 		function validasi(){

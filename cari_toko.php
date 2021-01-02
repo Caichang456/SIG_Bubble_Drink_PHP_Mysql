@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Cari Lokasi</title>
+		<title>Cari Toko</title>
 		<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
 		<script type="text/javascript" src="jquery-3.5.1.js"></script>
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
@@ -59,13 +59,13 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="cari_akun.php">Akun</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="cari_lokasi.php">Lokasi</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="cari_toko.php">Toko</a>
 					</li>
 					<li class="nav-item">
@@ -80,25 +80,33 @@
 				</ul>
 			</div>
 		</nav>
-		<h1>Cari Lokasi</h1>
+		<h1>Cari Toko</h1>
 		<form method="POST">
 			<input type="text" name="txt_cari_lokasi" placeholder="Cari apa?">
 			<input class="btn btn-primary" type="submit" name="submit" value="Cari">
 		</form>
 		<table class="table">
 			<tr>
+				<th>Nama Toko</th>
 				<th>Nama Lokasi</th>
-				<th>Alamat</th>
-				<th>Longtitude</th>
-				<th>Latitude</th>
+				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
 			<form>
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
-					<th><input type="text" name="txt_alamat" placeholder="Alamat"></th>
-					<th><input type="text" name="txt_longtitude" placeholder="Longtitude"></th>
-					<th><input type="text" name="txt_latitude" placeholder="Latitude"></th>
+					<td>
+						<select name="s_lokasi">
+							<?php
+								include"koneksi.php";
+								$data2=mysqli_query($koneksi,"select * from tb_lokasi");
+								while($d2=mysqli_fetch_array($data2)){ ?>
+									<option value="<?=$d2['id_lokasi'] ?>"><?=$d2['nama_lokasi'] ?></option>
+								<?php }
+							?>
+						</select>
+					</td>
+					<th><input type="text" name="txt_alamat" placeholder="Nomor Handphone"></th>
 					<th><input class="btn btn-primary" type="submit" name="simpan" value="Simpan"></th>
 				</tr>
 			</form>
@@ -114,38 +122,37 @@
 					$posisi = ($halaman-1) * $batas;
 				}
 				if(!isset($_POST['submit'])){
-					$data=mysqli_query($koneksi,"select * from tb_lokasi");
+					$data=mysqli_query($koneksi,"select * from tb_toko limit $batas");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
-							<td><?php echo $d['longtitude']; ?></td>
-							<td><?php echo $d['latitude']; ?></td>
+							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus</a>
+								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
 							</td>
 						</tr>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$lokasi=$_POST['txt_cari_lokasi'];
-					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
+					$data=mysqli_query($koneksi,"select * from tb_toko where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
-							<td><?php echo $d['longtitude']; ?></td>
-							<td><?php echo $d['latitude']; ?></td>
+							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['id_lokasi']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
 								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
 								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus</a>
 							</td>
 						</tr>
 					<?php } }
+
 			?>
 		</table>
 		<?php
-			$data2=mysqli_query($koneksi,"select * from tb_lokasi");
+			$data2=mysqli_query($koneksi,"select * from tb_toko");
 			$jmldata=mysqli_num_rows($data2);
 			$jmlhalaman=ceil($jmldata/$batas);
 		?>
@@ -153,7 +160,7 @@
 			<ul class="pagination">
 				<?php
 					for($i=1;$i<=$jmlhalaman;$i++){
-						echo "<li class='page-item'><a class='page-link' href='cari_lokasi.php?halaman=$i'>$i</a></li>";
+						echo "<li class='page-item'><a class='page-link' href='cari_toko.php?halaman=$i'>$i</a></li>";
 					}
 				?>
 			</ul>

@@ -2,11 +2,14 @@
 <html>
 	<head>
 		<title>Cari Komentar dan Rating</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	</head>
 	<body>
 		<a href="cari_akun.php">Akun</a> |
 		<a href="cari_lokasi.php">Lokasi</a> |
+		<a href="cari_toko.php">Toko</a> |
 		<a href="cari_bubble_drink.php">Bubble Drink</a> |
 		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
 		<a href="logoout.php">Logout</a>
@@ -38,9 +41,8 @@
 							<td><?php echo $d['komentar_user']; ?></td>
 							<td><?php echo $d['komentar_admin']; ?></td>
 							<td>
-								<a href="tambah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Tambah Komentar Admin</a>|
-								<a href="ubah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah Komentar Admin</a>|
-								<a href="hapus_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus Komentar Admin</a>
+								<a href="ubah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah</a>|
+								<a href="hapus_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus</a>
 							</td>
 						</tr>
 					<?php }} ?>
@@ -56,9 +58,8 @@
 							<td><?php echo $d['komentar_user']; ?></td>
 							<td><?php echo $d['komentar_admin']; ?></td>
 							<td>
-								<a href="tambah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Tambah Komentar Admin</a>|
-								<a href="ubah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah Komentar Admin</a>|
-								<a href="hapus_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus Komentar Admin</a>
+								<a href="ubah_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah</a>|
+								<a href="hapus_komentar_dan_rating.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus </a>
 							</td>
 						</tr>
 					<?php }} ?>
