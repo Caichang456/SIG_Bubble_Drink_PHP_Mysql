@@ -7,18 +7,34 @@
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	</head>
 	<body>
-		<a href="cari_akun.php">Akun</a> |
-		<a href="cari_lokasi.php">Lokasi</a> |
-		<a href="cari_toko.php">Toko</a> |
-		<a href="cari_bubble_drink.php">Bubble Drink</a> |
-		<a href="cari_komentar_dan_rating.php">Komentar dan Rating</a> |
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="cari_akun.php">Akun</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_lokasi.php">Lokasi</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="cari_toko.php">Toko</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_bubble_drink.php">Bubble Drink</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<a href="logoout.php">Logout</a>
 		<h1>Cari Lokasi</h1>
 		<form method="POST">
 			<input type="type" name="txt_cari_komentar_dan_rating" placeholder="Cari Apa?">
 			<input type="submit" name="submit" value="Cari">
 		</form>
-		<table border="1">
+		<table class="table">
 			<tr>
 				<th>ID Komentar dan Rating</th>
 				<th>ID Lokasi</th>

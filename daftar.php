@@ -15,11 +15,15 @@
 	$status=$_POST['status'];
 	$cek=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM tb_user WHERE email='$email' or user_name='$username'"));
 	if($cek>0){
-		echo "Email atau Username yang anda masukkan sudah ada di database";
+		echo "<script type='text/javascript'>
+				alert('Email atau Username yang anda masukkan sudah ada di database');
+			</script>";
 	}
 	else{
 		mysqli_query($koneksi,"INSERT INTO tb_user(id_user,email,user_name,password,blokir,jenis_kelamin,hobby,tanggal_lahir,bulan_lahir,tahun_lahir,nama_depan,nama_tengah,nama_belakang,status) VALUES('$id_user','$email','$username','$password','Tidak','$jenis_kelamin','$hobby','$tanggal_lahir','$bulan_lahir',$tahun_lahir,'$nama_depan','$nama_tengah','$nama_belakang','$status')");
-		echo "Data berhasil di daftar";
+		echo "<script type='text/javascript'>
+				alert('Data berhasil di daftar');
+			</script>";
 		header("location:index.php");
 	}
 ?>

@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 		<style type="text/css">
 			#map-canvas{
-				width: 500px;
+				width: 100%;
 				height: 500px;
 			}
 		</style>
@@ -18,12 +18,17 @@
 				var mapCanvas=document.getElementById('map-canvas');
 				var mapOptions={
 					mapsTypeId:google.maps.MapTypeId.ROADMAP,
-					center:new google.maps.LatLng(3.599591,98.706707),
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
 				var infoWindow = new google.maps.InfoWindow;
 				var bounds = new google.maps.LatLngBounds();
+				function bindInfoWindow(marker, map, infoWindow, html){
+					google.maps.event.addListener(marker, 'click', function(){
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+					});
+				}
 				function addMarker(latitude, longtitude, info){
 					var pt = new google.maps.LatLng(latitude, longtitude);
 					bounds.extend(pt);
@@ -32,13 +37,7 @@
 						position: pt
 					});
 					map.fitBounds(bounds);
-					bindInfoWindow(marker, peta, infoWindow, info);
-				}
-				function bindInfoWindow(marker, map, infoWindow, html){
-					google.maps.event.addListener(marker, 'click', function(){
-						infoWindow.setContent(html);
-						infoWindow.open(map, marker);
-					});
+					bindInfoWindow(marker, map, infoWindow, info);
 				}
 				<?php
 					include "koneksi.php";
@@ -59,10 +58,10 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="cari_akun.php">Akun</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="cari_lokasi.php">Lokasi</a>
 					</li>
 					<li class="nav-item">
@@ -73,9 +72,6 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="profil.php">Profil</a>
 					</li>
 				</ul>
 			</div>
@@ -93,13 +89,13 @@
 				<th>Latitude</th>
 				<th>Aksi</th>
 			</tr>
-			<form>
+			<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi()">
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
-					<th><input type="text" name="txt_alamat" placeholder="Alamat"></th>
+					<th><textarea name="Alamat" placeholder="Alamat"></textarea></th>
 					<th><input type="text" name="txt_longtitude" placeholder="Longtitude"></th>
 					<th><input type="text" name="txt_latitude" placeholder="Latitude"></th>
-					<th><input class="btn btn-primary" type="submit" name="simpan" value="Simpan"></th>
+					<th><input class="btn btn-primary" type="submit" name="simpan_lokasi" value="Simpan"></th>
 				</tr>
 			</form>
 			<?php
@@ -116,31 +112,41 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
-							<td><?php echo $d['longtitude']; ?></td>
-							<td><?php echo $d['latitude']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus</a>
-							</td>
-						</tr>
+						<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi()">
+							<tr>
+								<td>
+									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
+									<input type="text" name="nama_lokasi" value="<?php echo $d['nama_lokasi']; ?>">
+								</td>
+								<td><textarea name="alamat"><?php echo $d['alamat']; ?></textarea></td>
+								<td><input type="text" name="longtitude" value="<?php echo $d['longtitude']; ?>"></td>
+								<td><input type="text" name="latitude" value="<?php echo $d['latitude']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_lokasi" value="Ubah">
+									<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								</td>
+							</tr>
+						</form>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
-							<td><?php echo $d['longtitude']; ?></td>
-							<td><?php echo $d['latitude']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Hapus</a>
-							</td>
-						</tr>
+						<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi()">
+							<tr>
+								<td>
+									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
+									<input type="text" name="nama_lokasi" value="<?php echo $d['nama_lokasi']; ?>">
+								</td>
+								<td><textarea name="alamat"><?php echo $d['alamat']; ?></textarea></td>
+								<td><input type="text" name="longtitude" value="<?php echo $d['longtitude']; ?>"></td>
+								<td><input type="text" name="latitude" value="<?php echo $d['latitude']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_lokasi" value="Ubah">
+									<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								</td>
+							</tr>
+						</form>
 					<?php } }
 			?>
 		</table>
@@ -160,4 +166,28 @@
 		</div>
 		<div id="map-canvas"></div>
 	</body>
+	<script type="text/javascript">
+		function validasi(){
+			if(document.forms["form_lokasi"]["txt_nama_lokasi"].value==""){
+				alert("Nama Lokasi Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
+				return false;
+			}
+			if(document.forms["form_lokasi"]["txt_alamat"].value==""){
+				alert("Alamat Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
+				return false;
+			}
+			if(document.forms["form_lokasi"]["txt_longtitude"].value==""){
+				alert("Longtitude Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_longtitude"].focus();
+				return false;
+			}
+			if(document.forms["form_lokasi"]["txt_latitude"].value==""){
+				alert("Latitude Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_latitude"].focus();
+				return false;
+			}
+		}
+	</script>
 </html>

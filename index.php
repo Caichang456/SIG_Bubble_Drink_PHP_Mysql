@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	</head>
 	<body>
-		<form action="login.php" method="POST">
+		<form name="form_login" action="login.php" method="POST" onsubmit="return validasi()">
 			<h1>Login</h1>
 			<table>
 				<tr>
@@ -18,12 +18,26 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="btn_login" value="Login"><br>
-						<a href="daftar_akun.php">Daftar</a><br>
-						<a href="lupa_password.php">Lupa Password</a>
+						<input class="btn btn-primary" type="submit" name="btn_login" value="Login"><br><br>
+						<a class="btn btn-primary" href="daftar_akun.php">Daftar</a><br>
+						<a class="btn btn-danger"href="lupa_password.php">Lupa Password</a>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</body>
+	<script type="text/javascript">
+		function validasi(){
+			if(document.forms["form_login"]["txt_email"].value==""){
+				alert("Email Tidak Boleh Kosong");
+				document.forms["form_login"]["txt_email"].focus();
+				return false;
+			}
+			if(document.forms["form_login"]["txt_password"].value==""){
+				alert("Password Tidak Boleh Kosong");
+				document.forms["form_login"]["txt_password"].focus();
+				return false;
+			}
+		}
+	</script>
 </html>

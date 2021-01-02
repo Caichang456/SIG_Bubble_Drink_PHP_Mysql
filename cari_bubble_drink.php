@@ -20,13 +20,10 @@
 						<a class="nav-link" href="cari_toko.php">Toko</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="cari_bubble_drink.php">Bubble Drink <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="cari_bubble_drink.php">Bubble Drink</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="profil.php">Profil</a>
 					</li>
 				</ul>
 			</div>
@@ -34,6 +31,7 @@
 		<h1>Cari Bubble Drink</h1>
 		<form method="POST">
 			<input type="text" name="txt_cari_bubble_drink" placeholder="Cari apa?">
+			<input type="submit" name="submit" value="Cari" class="btn btn-primary">
 		</form>
 		<table class="table">
 			<tr>
@@ -43,7 +41,7 @@
 				<th>Diskon</th>
 				<th>Aksi</th>
 			</tr>
-			<form name="form_bubble_drink" method="POST" onsubmit="return validasi()">
+			<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi()">
 				<tr>
 					<th>
 						<select name="s_toko">
@@ -59,48 +57,74 @@
 					<th><input type="text" name="txt_nama_bubble_drink" placeholder="Nama Bubble Drink"></th>
 					<th><input type="text" name="txt_harga" placeholder="Harga"></th>
 					<th><input type="text" name="txt_diskon" placeholder="Diskon"></th>
-					<th><input type="submit" name="simpan" value="Simpan" class="btn btn-primary"></th>
+					<th><input type="submit" name="simpan_bubble_drink" value="Simpan" class="btn btn-primary"></th>
 				</tr>
 			</form>
 			<?php
 				include"koneksi.php";
+				$batas=10;
+				$halaman = @$_GET['halaman'];
+				if(empty($halaman)){
+					$posisi = 0;
+					$halaman = 1;
+				}
+				else{
+					$posisi = ($halaman-1) * $batas;
+				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td>
-								<select name="s_toko">
-									<?php
-										include"koneksi.php";
-										$data2=mysqli_query($koneksi,"select * from tb_toko");
-										while($d2=mysqli_fetch_array($data2)){?>
-											<option value="<?php $d2['id_toko']; ?>"><?php $d2['nama_toko']; ?></option>
-										<?php }
-									?>
-								</select>
-							</td>
-							<td><input type="text" value="<?php echo $d['nama']; ?>"></td>
-							<td><?php echo $d['harga']; ?></td>
-							<td><?php echo $d['diskon']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Hapus</a>
-							</td>
-						</tr>
+						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi()">
+							<tr>
+								<td>
+									<input type="hidden" name="id_bubble_drink" value="<?php echo $d['id_bubble_drink']; ?>">
+									<select name="s_toko">
+										<?php
+											include"koneksi.php";
+											$data2=mysqli_query($koneksi,"select * from tb_toko");
+											while($d2=mysqli_fetch_array($data2)){?>
+												<option value="<?=$d2['id_toko']; ?>"><?=$d2['nama_toko']; ?></option>
+											<?php }
+										?>
+									</select>
+								</td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['harga']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
+									<input class="btn btn-danger" type="submit" name="hapus_bubble_drink" value="Hapus">
+								</td>
+							</tr>
+						</form>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$cari_bubble_drink=$_POST['txt_cari_bubble_drink'];
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink where nama like'%$cari_bubble_drink%' or harga like'%$cari_bubble_drink%' or diskon like '%$cari_bubble_drink%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<tr>
-							<td><?php echo $d['nama']; ?></td>
-							<td><?php echo $d['harga']; ?></td>
-							<td><?php echo $d['diskon']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah Bubble Drink</a>
-								<a class="btn btn-danger" href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Hapus Bubble Drink</a>
-							</td>
-						</tr>
+						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi()">
+							<tr>
+								<td>
+									<input type="hidden" name="id_bubble_drink" value="<?php echo $d['id_bubble_drink']; ?>">
+									<select name="s_toko">
+										<?php
+											include"koneksi.php";
+											$data2=mysqli_query($koneksi,"select * from tb_toko");
+											while($d2=mysqli_fetch_array($data2)){?>
+												<option value="<?=$d2['id_toko']; ?>"><?=$d2['nama_toko']; ?></option>
+											<?php }
+										?>
+									</select>
+								</td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['harga']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
+								<td>
+									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
+									<input class="btn btn-danger" type="submit" name="hapus_bubble_drink" value="Hapus">
+								</td>
+							</tr>
+						</form>
 				<?php } } ?>
 				<?php
 					if(isset($_POST['simpan'])){
@@ -114,10 +138,38 @@
 					}
 				?>
 		</table>
+		<?php
+			$data2=mysqli_query($koneksi,"select * from tb_bubble_drink");
+			$jmldata=mysqli_num_rows($data2);
+			$jmlhalaman=ceil($jmldata/$batas);
+		?>
+		<div class="text-center">
+			<ul class="pagination">
+				<?php
+					for($i=1;$i<=$jmlhalaman;$i++){
+						echo "<li class='page-item'><a class='page-link' href='cari_bubble_drink.php?halaman=$i'>$i</a></li>";
+					}
+				?>
+			</ul>
+		</div>
 	</body>
 	<script type="text/javascript">
 		function validasi(){
-			if(document.forms["form_bubble_drink"])
+			if(document.forms["form_bubble_drink"]["txt_nama_bubble_drink"].value==""){
+				alert("Nama Bubble Drink Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
+				return false;
+			}
+			if(document.forms["form_bubble_drink"]["txt_harga"].value==""){
+				alert("Harga Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_harga"].focus();
+				return false;
+			}
+			if(document.forms["form_bubble_drink"]["txt_diskon"].value==""){
+				alert("Diskon Tidak Boleh Kosong");
+				document.forms["form_lokasi"]["txt_diskon"].focus();
+				return false;
+			}
 		}
 	</script>
 </html>

@@ -10,20 +10,8 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="cari_akun.php">Akun</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cari_lokasi.php">Lokasi</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cari_toko.php">Toko</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cari_bubble_drink.php">Bubble Drink</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Lokasi</a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="profil.php">Profil</a>

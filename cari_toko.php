@@ -18,7 +18,6 @@
 				var mapCanvas=document.getElementById('map-canvas');
 				var mapOptions={
 					mapsTypeId:google.maps.MapTypeId.ROADMAP,
-					center:new google.maps.LatLng(3.599591,98.706707),
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -73,9 +72,6 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="cari_komentar_dan_rating.php">Komentar dan Rating</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="profil.php">Profil</a>
 					</li>
 				</ul>
 			</div>
