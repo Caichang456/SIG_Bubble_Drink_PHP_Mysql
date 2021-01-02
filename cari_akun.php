@@ -57,7 +57,7 @@
 							<td><?php echo $d['email']; ?></td>
 							<td><?php echo $d['user_name']; ?></td>
 							<td>
-								<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>">Blokir</a>
+								<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>" onclick="return confirm('Yakin Blokir?')">Blokir</a>
 							</td>
 						</tr>
 					<?php } } ?>
@@ -69,7 +69,7 @@
 								<td><?php echo $d['email']; ?></td>
 								<td><?php echo $d['user_name']; ?></td>
 								<td>
-									<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>">Blokir</a>
+									<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>" onclick="return confirm('Yakin Hapus?')">Blokir</a>
 								</td>
 						</tr>
 					<?php } }?> 

@@ -157,34 +157,34 @@
 		function validasi(){
 			if(document.forms["form_bubble_drink"]["txt_nama_bubble_drink"].value==""){
 				alert("Nama Bubble Drink Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
+				document.forms["form_bubble_drink"]["txt_nama_lokasi"].focus();
 				return false;
 			}
 			if(document.forms["form_bubble_drink"]["txt_harga"].value==""){
 				alert("Harga Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_harga"].focus();
+				document.forms["form_bubble_drink"]["txt_harga"].focus();
 				return false;
 			}
 			if(document.forms["form_bubble_drink"]["txt_diskon"].value==""){
 				alert("Diskon Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_diskon"].focus();
+				document.forms["form_bubble_drink"]["txt_diskon"].focus();
 				return false;
 			}
 		}
 		function validasi2(){
 			if(document.forms["form_bubble_drink"]["txt_nama_bubble_drink"].value==""){
 				alert("Nama Bubble Drink Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
+				document.forms["form_bubble_drink"]["txt_nama_lokasi"].focus();
 				return false;
 			}
 			if(document.forms["form_bubble_drink"]["txt_harga"].value==""){
 				alert("Harga Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_harga"].focus();
+				document.forms["form_bubble_drink"]["txt_harga"].focus();
 				return false;
 			}
 			if(document.forms["form_bubble_drink"]["txt_diskon"].value==""){
 				alert("Diskon Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_diskon"].focus();
+				document.forms["form_bubble_drink"]["txt_diskon"].focus();
 				return false;
 			}
 		}

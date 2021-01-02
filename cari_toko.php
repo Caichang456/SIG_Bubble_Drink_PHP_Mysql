@@ -120,7 +120,7 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_toko");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi2()">
 							<tr>
 								<td>
 									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
@@ -140,7 +140,7 @@
 								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
-									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
+									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 								</td>
 							</tr>
 						</form>
@@ -149,7 +149,7 @@
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_toko where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi2()">
 							<tr>
 								<td>
 									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
@@ -169,7 +169,7 @@
 								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
-									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Hapus</a>
+									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 								</td>
 							</tr>
 						</form>
@@ -193,4 +193,30 @@
 		</div>
 		<div id="map-canvas"></div>
 	</body>
+	<script type="text/javascript">
+		function validasi(){
+			if(document.forms["form_toko"]["txt_nama_toko"].value==""){
+				alert("Nama Toko Tidak Boleh Kosong");
+				document.forms["form_toko"]["txt_nama_toko"].focus();
+				return false;
+			}
+			if(document.forms["form_toko"]["txt_nomor_handphone"].value==""){
+				alert("Nomor Handphone Tidak Boleh Kosong");
+				document.forms["form_toko"]["txt_nomor_handphone"].focus();
+				return false;
+			}
+		}
+		function validasi2(){
+			if(document.forms["form_toko"]["txt_nama_toko"].value==""){
+				alert("Nama Toko Tidak Boleh Kosong");
+				document.forms["form_toko"]["txt_nama_toko"].focus();
+				return false;
+			}
+			if(document.forms["form_toko"]["txt_nomor_handphone"].value==""){
+				alert("Nomor Handphone Tidak Boleh Kosong");
+				document.forms["form_toko"]["txt_nomor_handphone"].focus();
+				return false;
+			}
+		}
+	</script>
 </html>
