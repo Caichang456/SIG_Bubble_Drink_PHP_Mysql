@@ -88,9 +88,9 @@
 										?>
 									</select>
 								</td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama']; ?>"></td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['harga']; ?>"></td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama_bubble_drink']; ?>"></td>
+								<td><input type="text" name="txt_harga_bubble_drink" value="<?php echo $d['harga_bubble_drink']; ?>"></td>
+								<td><input type="text" name="txt_diskon_bubble_drink" value="<?php echo $d['diskon_bubble_drink']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
 									<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
@@ -116,9 +116,9 @@
 										?>
 									</select>
 								</td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama']; ?>"></td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['harga']; ?>"></td>
-								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['diskon']; ?>"></td>
+								<td><input type="text" name="txt_nama_bubble_drink" value="<?php echo $d['nama_bubble_drink']; ?>"></td>
+								<td><input type="text" name="txt_harga_bubble_drink" value="<?php echo $d['harga_bubble_drink']; ?>"></td>
+								<td><input type="text" name="txt_diskon_bubble_drink" value="<?php echo $d['diskon_bubble_drink']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_bubble_drink" value="Ubah">
 									<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>

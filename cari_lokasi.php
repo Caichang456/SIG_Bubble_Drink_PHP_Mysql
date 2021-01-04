@@ -21,7 +21,7 @@
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
-				var infoWindow = new google.maps.InfoWindow;
+				var infoWindow = new google.maps.InfoWindow();
 				var bounds = new google.maps.LatLngBounds();
 				function bindInfoWindow(marker, map, infoWindow, html){
 					google.maps.event.addListener(marker, 'click', function(){
@@ -34,7 +34,8 @@
 					bounds.extend(pt);
 					var marker = new google.maps.Marker({
 						map: map,
-						position: pt
+						position: pt,
+						title: "Klik untuk mengetahui lebih lanjut"
 					});
 					map.fitBounds(bounds);
 					bindInfoWindow(marker, map, infoWindow, info);

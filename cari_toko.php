@@ -21,7 +21,7 @@
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
-				var infoWindow = new google.maps.InfoWindow;
+				var infoWindow = new google.maps.InfoWindow();
 				var bounds = new google.maps.LatLngBounds();
 				function addMarker(latitude, longtitude, info){
 					var pt = new google.maps.LatLng(latitude, longtitude);
@@ -31,7 +31,7 @@
 						position: pt
 					});
 					map.fitBounds(bounds);
-					bindInfoWindow(marker, peta, infoWindow, info);
+					bindInfoWindow(marker, map, infoWindow, info);
 				}
 				function bindInfoWindow(marker, map, infoWindow, html){
 					google.maps.event.addListener(marker, 'click', function(){
@@ -85,12 +85,13 @@
 			<tr>
 				<th>Nama Toko</th>
 				<th>Nama Lokasi</th>
+				<th>Alamat</th>
 				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
 			<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi()">
 				<tr>
-					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
+					<td><input type="text" name="txt_nama_toko" placeholder="Nama Toko"></td>
 					<td>
 						<select name="s_lokasi">
 							<?php
@@ -102,7 +103,8 @@
 							?>
 						</select>
 					</td>
-					<th><input type="text" name="txt_alamat" placeholder="Nomor Handphone"></th>
+					<th><input type="text" name="txt_alamat" placeholder="Alamat"></th>
+					<th><input type="text" name="txt_nomor_handphone" placeholder="Nomor Handphone"></th>
 					<th><input class="btn btn-primary" type="submit" name="simpan_toko" value="Simpan"></th>
 				</tr>
 			</form>
@@ -137,7 +139,8 @@
 										?>
 									</select>
 								</td>
-								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
+								<th><input type="text" name="txt_alamat" value="<?php echo $d['alamat']; ?>"></th>
+								<td><input type="text" name="txt_nomor_handphone" value="<?php echo $d['nomor_handphone']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
 									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
@@ -166,7 +169,8 @@
 										?>
 									</select>
 								</td>
-								<td><input type="text" name="txt_id_lokasi" value="<?php echo $d['nomor_handphone']; ?>"></td>
+								<th><input type="text" name="txt_alamat" value="<?php echo $d['alamat']; ?>"></th>
+								<td><input type="text" name="txt_nomor_handphone" value="<?php echo $d['nomor_handphone']; ?>"></td>
 								<td>
 									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
 									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
