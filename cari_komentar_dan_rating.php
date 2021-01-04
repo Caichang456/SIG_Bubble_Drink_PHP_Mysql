@@ -44,6 +44,15 @@
 			</tr>
 			<?php
 				include"koneksi.php";
+				$batas=10;
+				$halaman = @$_GET['halaman'];
+				if(empty($halaman)){
+					$posisi = 0;
+					$halaman = 1;
+				}
+				else{
+					$posisi = ($halaman-1) * $batas;
+				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
 					while($d=mysqli_fetch_array($data)){ ?>
@@ -75,4 +84,18 @@
 					<?php }} ?>
 		</table>
 	</body>
+	<?php
+			$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
+			$jmldata=mysqli_num_rows($data2);
+			$jmlhalaman=ceil($jmldata/$batas);
+		?>
+		<div class="text-center">
+			<ul class="pagination">
+				<?php
+					for($i=1;$i<=$jmlhalaman;$i++){
+						echo "<li class='page-item'><a class='page-link' href='cari_komentar_dan_rating.php?halaman=$i'>$i</a></li>";
+					}
+				?>
+			</ul>
+		</div>
 </html>

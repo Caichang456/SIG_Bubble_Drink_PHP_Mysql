@@ -89,7 +89,7 @@
 				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
-			<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi()">
+			<form method="POST" action="penting.php">
 				<tr>
 					<td><input type="text" name="txt_nama_toko" placeholder="Nama Toko"></td>
 					<td>
@@ -122,7 +122,7 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_toko");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
@@ -152,7 +152,7 @@
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_toko where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_toko" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
@@ -197,30 +197,4 @@
 		</div>
 		<div id="map-canvas"></div>
 	</body>
-	<script type="text/javascript">
-		function validasi(){
-			if(document.forms["form_toko"]["txt_nama_toko"].value==""){
-				alert("Nama Toko Tidak Boleh Kosong");
-				document.forms["form_toko"]["txt_nama_toko"].focus();
-				return false;
-			}
-			if(document.forms["form_toko"]["txt_nomor_handphone"].value==""){
-				alert("Nomor Handphone Tidak Boleh Kosong");
-				document.forms["form_toko"]["txt_nomor_handphone"].focus();
-				return false;
-			}
-		}
-		function validasi2(){
-			if(document.forms["form_toko"]["txt_nama_toko"].value==""){
-				alert("Nama Toko Tidak Boleh Kosong");
-				document.forms["form_toko"]["txt_nama_toko"].focus();
-				return false;
-			}
-			if(document.forms["form_toko"]["txt_nomor_handphone"].value==""){
-				alert("Nomor Handphone Tidak Boleh Kosong");
-				document.forms["form_toko"]["txt_nomor_handphone"].focus();
-				return false;
-			}
-		}
-	</script>
 </html>

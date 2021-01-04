@@ -41,7 +41,7 @@
 				<th>Diskon</th>
 				<th>Aksi</th>
 			</tr>
-			<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi()">
+			<form method="POST" action="penting.php">
 				<tr>
 					<th>
 						<select name="s_toko">
@@ -74,7 +74,7 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="id_bubble_drink" value="<?php echo $d['id_bubble_drink']; ?>">
@@ -102,7 +102,7 @@
 					$cari_bubble_drink=$_POST['txt_cari_bubble_drink'];
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink where nama like'%$cari_bubble_drink%' or harga like'%$cari_bubble_drink%' or diskon like '%$cari_bubble_drink%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_bubble_drink" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="id_bubble_drink" value="<?php echo $d['id_bubble_drink']; ?>">
@@ -153,40 +153,4 @@
 			</ul>
 		</div>
 	</body>
-	<script type="text/javascript">
-		function validasi(){
-			if(document.forms["form_bubble_drink"]["txt_nama_bubble_drink"].value==""){
-				alert("Nama Bubble Drink Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_bubble_drink"]["txt_harga"].value==""){
-				alert("Harga Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_harga"].focus();
-				return false;
-			}
-			if(document.forms["form_bubble_drink"]["txt_diskon"].value==""){
-				alert("Diskon Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_diskon"].focus();
-				return false;
-			}
-		}
-		function validasi2(){
-			if(document.forms["form_bubble_drink"]["txt_nama_bubble_drink"].value==""){
-				alert("Nama Bubble Drink Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_bubble_drink"]["txt_harga"].value==""){
-				alert("Harga Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_harga"].focus();
-				return false;
-			}
-			if(document.forms["form_bubble_drink"]["txt_diskon"].value==""){
-				alert("Diskon Tidak Boleh Kosong");
-				document.forms["form_bubble_drink"]["txt_diskon"].focus();
-				return false;
-			}
-		}
-	</script>
 </html>

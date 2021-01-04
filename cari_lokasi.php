@@ -90,7 +90,7 @@
 				<th>Latitude</th>
 				<th>Aksi</th>
 			</tr>
-			<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi()">
+			<form method="POST" action="penting.php">
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
 					<th><textarea name="Alamat" placeholder="Alamat"></textarea></th>
@@ -113,7 +113,7 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
@@ -133,7 +133,7 @@
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form name="form_lokasi" method="POST" action="penting.php" onsubmit="return validasi2()">
+						<form method="POST" action="penting.php">
 							<tr>
 								<td>
 									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
@@ -167,50 +167,4 @@
 		</div>
 		<div id="map-canvas"></div>
 	</body>
-	<script type="text/javascript">
-		function validasi(){
-			if(document.forms["form_lokasi"]["txt_nama_lokasi"].value==""){
-				alert("Nama Lokasi Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_alamat"].value==""){
-				alert("Alamat Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_longtitude"].value==""){
-				alert("Longtitude Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_longtitude"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_latitude"].value==""){
-				alert("Latitude Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_latitude"].focus();
-				return false;
-			}
-		}
-		function validasi2(){
-			if(document.forms["form_lokasi"]["txt_nama_lokasi"].value==""){
-				alert("Nama Lokasi Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_alamat"].value==""){
-				alert("Alamat Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_nama_lokasi"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_longtitude"].value==""){
-				alert("Longtitude Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_longtitude"].focus();
-				return false;
-			}
-			if(document.forms["form_lokasi"]["txt_latitude"].value==""){
-				alert("Latitude Tidak Boleh Kosong");
-				document.forms["form_lokasi"]["txt_latitude"].focus();
-				return false;
-			}
-		}
-	</script>
 </html>
