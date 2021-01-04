@@ -54,12 +54,12 @@
 					$posisi = ($halaman-1) * $batas;
 				}
 				if(!isset($_POST['submit'])){
-					$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
+					$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['id_komentar_dan_rating']; ?></td>
-							<td><?php echo $d['id_bubble_drink']; ?></td>
-							<td><?php echo $d['id_user']; ?></td>
+							<td><?php echo $d['nama_bubble_drink']; ?></td>
+							<td><?php echo $d['user_name']; ?></td>
 							<td><?php echo $d['rating']; ?></td>
 							<td><?php echo $d['komentar_user']; ?></td>
 							<td>
@@ -69,12 +69,12 @@
 					<?php }} ?>
 				<?php if(isset($_POST['submit'])){
 					$komentar=$_POST['txt_cari_komentar_dan_rating'];
-					$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating where komentar_user like '%$komentar%' or komentar_admin like '%$komentar%' or rating like '%$komentar%'");
+					$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user where komentar_user like '%$komentar%' or komentar_admin like '%$komentar%' or rating like '%$komentar%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['id_komentar_dan_rating']; ?></td>
-							<td><?php echo $d['id_bubble_drink']; ?></td>
-							<td><?php echo $d['id_user']; ?></td>
+							<td><?php echo $d['nama_bubble_drink']; ?></td>
+							<td><?php echo $d['user_name']; ?></td>
 							<td><?php echo $d['rating']; ?></td>
 							<td><?php echo $d['komentar_user']; ?></td>
 							<td>

@@ -81,7 +81,7 @@
 									<select name="s_toko">
 										<?php
 											include"koneksi.php";
-											$data2=mysqli_query($koneksi,"select * from tb_toko");
+											$data2=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko");
 											while($d2=mysqli_fetch_array($data2)){?>
 												<option value="<?=$d2['id_toko']; ?>"><?=$d2['nama_toko']; ?></option>
 											<?php }
@@ -109,7 +109,7 @@
 									<select name="s_toko">
 										<?php
 											include"koneksi.php";
-											$data2=mysqli_query($koneksi,"select * from tb_toko");
+											$data2=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko");
 											while($d2=mysqli_fetch_array($data2)){?>
 												<option value="<?=$d2['id_toko']; ?>"><?=$d2['nama_toko']; ?></option>
 											<?php }

@@ -38,10 +38,10 @@
 						infoWindow.setContent(html);
 						infoWindow.open(map, marker);
 					});
-				}
+				}// https://invoice.xendit.co/od/21-day-rapid-sales-program
 				<?php
 					include "koneksi.php";
-					$data=mysqli_query($koneksi,"select * from tb_lokasi");
+					$data=mysqli_query($koneksi,"select * from tb_lokasi as a inner join tb_toko as b on a.id_lokasi=b.id_lokasi");
 					while($d=mysqli_fetch_array($data)){
 						$nama_lokasi=$d['nama_lokasi'];
 						$alamat=$d['alamat'];
