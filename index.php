@@ -26,18 +26,4 @@
 			</table>
 		</form>
 	</body>
-	<script type="text/javascript">
-		function validasi(){
-			if(document.forms["form_login"]["txt_email"].value==""){
-				alert("Email Tidak Boleh Kosong");
-				document.forms["form_login"]["txt_email"].focus();
-				return false;
-			}
-			if(document.forms["form_login"]["txt_password"].value==""){
-				alert("Password Tidak Boleh Kosong");
-				document.forms["form_login"]["txt_password"].focus();
-				return false;
-			}
-		}
-	</script>
 </html>

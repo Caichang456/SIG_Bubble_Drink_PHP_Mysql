@@ -113,41 +113,31 @@
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form method="POST" action="penting.php">
-							<tr>
-								<td>
-									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
-									<input type="text" name="nama_lokasi" value="<?php echo $d['nama_lokasi']; ?>">
-								</td>
-								<td><textarea name="alamat"><?php echo $d['alamat']; ?></textarea></td>
-								<td><input type="text" name="longtitude" value="<?php echo $d['longtitude']; ?>"></td>
-								<td><input type="text" name="latitude" value="<?php echo $d['latitude']; ?>"></td>
-								<td>
-									<input class="btn btn-primary" type="submit" name="ubah_lokasi" value="Ubah">
-									<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
-								</td>
-							</tr>
-						</form>
+						<tr>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['longtitude']; ?></td>
+							<td><?php echo $d['latitude']; ?></td>
+							<td>
+								<a class="btn btn-primary" href="ubah_lokasi.php?ubah_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+							</td>
+						</tr>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$lokasi=$_POST['txt_cari_lokasi'];
 					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form method="POST" action="penting.php">
-							<tr>
-								<td>
-									<input type="hidden" name="id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
-									<input type="text" name="nama_lokasi" value="<?php echo $d['nama_lokasi']; ?>">
-								</td>
-								<td><textarea name="alamat"><?php echo $d['alamat']; ?></textarea></td>
-								<td><input type="text" name="longtitude" value="<?php echo $d['longtitude']; ?>"></td>
-								<td><input type="text" name="latitude" value="<?php echo $d['latitude']; ?>"></td>
-								<td>
-									<input class="btn btn-primary" type="submit" name="ubah_lokasi" value="Ubah">
-									<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
-								</td>
-							</tr>
-						</form>
+						<tr>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['longtitude']; ?></td>
+							<td><?php echo $d['latitude']; ?></td>
+							<td>
+								<a class="btn btn-primary" href="ubah_lokasi.php?ubah_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+							</td>
+						</tr>
 					<?php } }
 			?>
 		</table>

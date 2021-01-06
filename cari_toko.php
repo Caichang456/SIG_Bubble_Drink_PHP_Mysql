@@ -44,10 +44,11 @@
 					$data=mysqli_query($koneksi,"select * from tb_lokasi as a inner join tb_toko as b on a.id_lokasi=b.id_lokasi");
 					while($d=mysqli_fetch_array($data)){
 						$nama_lokasi=$d['nama_lokasi'];
+						$nama_toko=$d['nama_toko'];
 						$alamat=$d['alamat'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi');\n");
+						echo ("addMarker($latitude,$longtitude,'$nama_lokasi<br>$nama_toko<br>$latitude<br>$longtitude');\n");
 					}
 				?>
 				google.maps.event.addDomListener(window, 'load', initialize);
@@ -120,63 +121,33 @@
 					$posisi = ($halaman-1) * $batas;
 				}
 				if(!isset($_POST['submit'])){
-					$data=mysqli_query($koneksi,"select * from tb_toko");
+					$data=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form method="POST" action="penting.php">
-							<tr>
-								<td>
-									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
-									<input type="text" name="txt_nama_toko" value="<?php echo $d['nama_toko']; ?>">	
-								</td>
-								<td>
-									<select name="s_lokasi">
-										<?php
-											include"koneksi.php";
-											$data2=mysqli_query($koneksi,"select * from tb_lokasi");
-											while($d2=mysqli_fetch_array($data2)){ ?>
-												<option value="<?=$d2['id_lokasi'];?>"><?=$d2['nama_lokasi'];?></option>
-											<?php }
-										?>
-									</select>
-								</td>
-								<th><input type="text" name="txt_alamat" value="<?php echo $d['alamat']; ?>"></th>
-								<td><input type="text" name="txt_nomor_handphone" value="<?php echo $d['nomor_handphone']; ?>"></td>
-								<td>
-									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
-									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
-								</td>
-							</tr>
-						</form>
+						<tr>
+							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
+							<td>
+								<a class="btn btn-primary" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+							</td>
+						</tr>
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$lokasi=$_POST['txt_cari_lokasi'];
-					$data=mysqli_query($koneksi,"select * from tb_toko where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
+					$data=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi where nama_toko like '%$lokasi%' or nomor_handphone like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
-						<form method="POST" action="penting.php">
-							<tr>
-								<td>
-									<input type="hidden" name="txt_id_toko" value="<?php echo $d['id_toko']; ?>">
-									<input type="text" name="txt_nama_toko" value="<?php echo $d['nama_toko']; ?>">	
-								</td>
-								<td>
-									<select name="s_lokasi">
-										<?php
-											include"koneksi.php";
-											$data2=mysqli_query($koneksi,"select * from tb_lokasi");
-											while($d2=mysqli_fetch_array($data2)){ ?>
-												<option value="<?=$d2['id_lokasi'];?>"><?=$d2['nama_lokasi'];?></option>
-											<?php }
-										?>
-									</select>
-								</td>
-								<th><input type="text" name="txt_alamat" value="<?php echo $d['alamat']; ?>"></th>
-								<td><input type="text" name="txt_nomor_handphone" value="<?php echo $d['nomor_handphone']; ?>"></td>
-								<td>
-									<input class="btn btn-primary" type="submit" name="ubah_toko" value="Ubah">
-									<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
-								</td>
-							</tr>
-						</form>
+						<tr>
+							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['nomor_handphone']; ?></td>
+							<td>
+								<a class="btn btn-primary" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+							</td>
+						</tr>
 					<?php } }
 
 			?>

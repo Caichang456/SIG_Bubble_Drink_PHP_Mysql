@@ -10,30 +10,22 @@
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 		<style type="text/css">
 			#map-canvas{
-				width: 500px;
+				width: 100%;
 				height: 500px;
 			}
 		</style>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTYo0s-mGdijeuL6BfruBt3T_FG4o9wM"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTYo0s-mGdijeuL6BfruBt3T_FG4o9wM&callback=initialize" async defer></script>
 		<script type="text/javascript">
 			var marker;
 			function initialize(){
 				var mapCanvas=document.getElementById('map-canvas');
 				var mapOptions={
 					mapsTypeId:google.maps.MapTypeId.ROADMAP,
-					center:new google.maps.LatLng(3.599591,98.706707),
 					zoom:9
 				}
 				var map = new google.maps.Map(mapCanvas, mapOptions);
-				var infoWindow = new google.maps.InfoWindow;
+				var infoWindow = new google.maps.InfoWindow();
 				var bounds = new google.maps.LatLngBounds();
-				function bindInfoWindow(marker, map, infoWindow, html){
-					google.maps.event.addListener(marker, 'click', function(){
-						infoWindow.setContent(html);
-						infoWindow.open(map, marker);
-					
-					});
-				}
 				function addMarker(latitude, longtitude, info){
 					var pt = new google.maps.LatLng(latitude, longtitude);
 					bounds.extend(pt);
@@ -41,46 +33,60 @@
 						map: map,
 						position: pt
 					});
+					map.fitBounds(bounds);
+					bindInfoWindow(marker, map, infoWindow, info);
+				}
+				function bindInfoWindow(marker, map, infoWindow, html){
+					google.maps.event.addListener(marker, 'click', function(){
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+					});
 				}
 				<?php
-					$data=mysqli_query($koneksi,"select * from tb_lokasi");
+					include "koneksi.php";
+					$data=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi");
 					while($d=mysqli_fetch_array($data)){
-						$nama_lokasi=$d['nama_lokasi'];
+						$nama_toko=$d['nama_toko'];
 						$alamat=$d['alamat'];
-						$nomor_handphone=$d['nomor_handphone'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi $nomor_handphone $alamat');\n");
+						echo ("addMarker($latitude,$longtitude,'$nama_toko<br>$alamat');\n");
 					}
 				?>
+				google.maps.event.addDomListener(window, 'load', initialize);
 			}
-			google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Lokasi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.php">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<div id="map-canvas"></div>
 		<h1>Detail Bubble Drink</h1>
 		<table width="1">
 			<tr>
-				<th>ID Komentar</th>
 				<th>Nama Bubble Drink</th>
 				<th>Nama Lokasi</th>
 				<th>Rating</th>
 				<th>Komentar User</th>
-				<th>Komentar Admin</th>
-				<th>Aksi</th>
 			</tr>
 			<form action="simpan_komentar_user.php" method="POST">
 				<tr>
-					<td>
-						<input type="text" name="txt_id_komentar" placeholder="ID Komentar">
-					</td>
 					<td>
 						<select name="bubble_drink">
 							<?php
 								$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
 								while($d=mysqli_fetch_array($data)){ ?>
-									<option value="<?php echo $d['id_bubble_drink']; ?>"><?php echo $d['nama']; ?></option>
+									<option value="<?php echo $d['id_bubble_drink']; ?>"><?php echo $d['nama_bubble_drink']; ?></option>
 								<?php }
 							?>
 						</select>
@@ -90,7 +96,7 @@
 							<?php
 								$data=mysqli_query($koneksi,"select * from tb_lokasi");
 								while($d=mysqli_fetch_array($data)){ ?>
-									<option value="<?php echo $d['id_lokasi']; ?>"><?php echo $d['nama_lokasi']; echo $d['nomor_handphone'];?></option>
+									<option value="<?php echo $d['id_lokasi']; ?>"><?php echo $d['nama_lokasi']; ?></option>
 								<?php }
 							?>
 						</select>
@@ -105,24 +111,17 @@
 						</select>
 					</td>
 					<td><input type="text" name="txt_komentar_user"></td>
-					<td><input type="text" name="txt_komentar_admin" disabled="disabled"></td>
-					<td><input type="submit" name="submit" value="Simpan"></td>
+					<td><input type="submit" name="submit" value="Simpan" class="btn-primary"></td>
 				</tr>
 			</form>
 			<?php
-				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
-				while($d=mysqli_fetch_array($data)){ ?>
+				$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_lokasi as c on a.id_lokasi=c.id_lokasi inner join tb_user as d on a.id_user=d.id_user");
+				while($d2=mysqli_fetch_array($data2)){ ?>
 					<tr>
-						<td><?php echo $d['id_komentar']; ?></td>
-						<td><?php echo $d['id_bubble_drink']; ?></td>
-						<td><?php echo $d['id_lokasi']; ?></td>
-						<td><?php echo $d['rating']; ?></td>
-						<td><?php echo $d['komentar_user']; ?></td>
-						<td><?php echo $d['komentar_admin']; ?></td>
-						<td>
-							<a href="ubah_komentar_user.php?id_komentar=<?php echo $d['id_komentar']; ?>">Ubah Komentar User</a> |
-							<a href="hapus_komentar_user.php?id_komentar=<?php echo $d['id_komentar']; ?>">Hapus Komentar User</a>
-						</td>
+						<td><?php echo $d2['nama_bubble_drink']; ?></td>
+						<td><?php echo $d2['nama_lokasi']; ?></td>
+						<td><?php echo $d2['rating']; ?></td>
+						<td><?php echo $d2['komentar_user']; ?></td>
 					</tr>
 				<?php }
 			?>

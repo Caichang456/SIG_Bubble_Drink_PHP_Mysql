@@ -14,7 +14,7 @@
 						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Lokasi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="profil.php">Profile</a>
+						<a class="nav-link" href="logout.php">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -43,9 +43,9 @@
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama']; ?></td>
-							<td><?php echo $d['harga']; ?></td>
-							<td><?php echo $d['diskon']; ?></td>
+							<td><?php echo $d['nama_bubble_drink']; ?></td>
+							<td><?php echo $d['harga_bubble_drink']; ?></td>
+							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><a class="btn btn-primary" href="detail_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail Bubble Drink</a></td>
 						</tr>
 					<?php }
@@ -57,9 +57,9 @@
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink where nama like '%$nama%' or harga like '%$harga%' or diskon like '%$diskon%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama']; ?></td>
-							<td><?php echo $d['harga']; ?></td>
-							<td><?php echo $d['diskon']; ?></td>
+							<td><?php echo $d['nama_bubble_drink']; ?></td>
+							<td><?php echo $d['harga_bubble_drink']; ?></td>
+							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><a class="btn btn-primary" href="detail_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail Bubble Drink</a></td>
 						</tr>
 					<?php }
