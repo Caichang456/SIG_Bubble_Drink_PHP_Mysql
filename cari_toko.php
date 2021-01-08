@@ -148,7 +148,15 @@
 								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
-					<?php } }
+					<?php } } ?>
+					<?php if(isset($_POST['simpan_toko'])){
+						$nama_toko=$_POST['txt_nama_toko'];
+		$lokasi=$_POST['s_lokasi'];
+		$alamat=$_POST['txt_alamat'];
+		$nomor_handphone=$_POST['txt_nomor_handphone'];
+		mysqli_query($koneksi,"insert into tb_toko(id_toko,id_lokasi,nama_toko,alamat,nomor_handphone) values('','$lokasi','$nama_toko','$alamat','$nomor_handphone')");
+		header("location:cari_toko.php");
+					 } ?>
 
 			?>
 		</table>

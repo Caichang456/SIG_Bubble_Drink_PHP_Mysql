@@ -100,6 +100,16 @@
 							</td>
 						</tr>
 				<?php } } ?>
+				<?php if(isset($_POST['simpan_bubble_drink'])){
+							$nama_bubble_drink=$_POST['txt_nama_bubble_drink'];
+		$harga_bubble_drink=$_POST['txt_harga_bubble_drink'];
+		$diskon_bubble_drink=$_POST['txt_nama_bubble_drink'];
+		$toko=$_POST['s_toko'];
+		mysqli_query($koneksi,"insert into tb_bubble_drink(id_bubble_drink,id_toko,nama_bubble_drink,harga_bubble_drink,diskon_bubble_drink) values('','$toko','$nama_bubble_drink','$harga_bubble_drink','$diskon_bubble_drink')");
+		header("location:cari_bubble_drink.php");
+
+					
+				}  ?>
 		</table>
 		<?php
 			$data2=mysqli_query($koneksi,"select * from tb_bubble_drink");

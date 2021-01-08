@@ -140,6 +140,16 @@
 						</tr>
 					<?php } }
 			?>
+			<?php if(isset($_POST['simpan_lokasi'])){
+						$nama_lokasi=$_POST['nama_lokasi'];
+		$alamat=$_POST['txt_alamat'];
+		$latitude=$_POST['latitude'];
+		$longtitude=$_POST['longtitude'];
+		mysqli_query($koneksi,"insert into tb_lokasi(id_lokasi,nama_lokasi,alamat,latitude,longtitude) values('','$nama_lokasi','$alamat','$latitude','$longtitude')");
+		header("location:cari_lokasi.php");
+
+				 }
+			?>
 		</table>
 		<?php
 			$data2=mysqli_query($koneksi,"select * from tb_lokasi");
