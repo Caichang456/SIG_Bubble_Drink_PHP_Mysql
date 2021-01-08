@@ -11,7 +11,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item active">
-						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Lokasi</a>
+						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Komentar</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="logout.php">Logout</a>

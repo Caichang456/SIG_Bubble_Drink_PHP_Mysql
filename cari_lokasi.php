@@ -90,7 +90,7 @@
 				<th>Latitude</th>
 				<th>Aksi</th>
 			</tr>
-			<form method="POST" action="penting.php">
+			<form method="POST">
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
 					<th><textarea name="Alamat" placeholder="Alamat"></textarea></th>

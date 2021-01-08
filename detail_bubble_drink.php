@@ -75,7 +75,6 @@
 		<table width="1">
 			<tr>
 				<th>Nama Bubble Drink</th>
-				<th>Nama Lokasi</th>
 				<th>Rating</th>
 				<th>Komentar User</th>
 			</tr>
@@ -87,16 +86,6 @@
 								$data=mysqli_query($koneksi,"select * from tb_bubble_drink");
 								while($d=mysqli_fetch_array($data)){ ?>
 									<option value="<?php echo $d['id_bubble_drink']; ?>"><?php echo $d['nama_bubble_drink']; ?></option>
-								<?php }
-							?>
-						</select>
-					</td>
-					<td>
-						<select name="lokasi">
-							<?php
-								$data=mysqli_query($koneksi,"select * from tb_lokasi");
-								while($d=mysqli_fetch_array($data)){ ?>
-									<option value="<?php echo $d['id_lokasi']; ?>"><?php echo $d['nama_lokasi']; ?></option>
 								<?php }
 							?>
 						</select>
@@ -115,11 +104,10 @@
 				</tr>
 			</form>
 			<?php
-				$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_lokasi as c on a.id_lokasi=c.id_lokasi inner join tb_user as d on a.id_user=d.id_user");
+				$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user");
 				while($d2=mysqli_fetch_array($data2)){ ?>
 					<tr>
 						<td><?php echo $d2['nama_bubble_drink']; ?></td>
-						<td><?php echo $d2['nama_lokasi']; ?></td>
 						<td><?php echo $d2['rating']; ?></td>
 						<td><?php echo $d2['komentar_user']; ?></td>
 					</tr>

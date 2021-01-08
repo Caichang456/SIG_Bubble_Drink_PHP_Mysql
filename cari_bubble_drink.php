@@ -41,7 +41,7 @@
 				<th>Diskon</th>
 				<th>Aksi</th>
 			</tr>
-			<form method="POST" action="penting.php">
+			<form method="POST">
 				<tr>
 					<th>
 						<select name="s_toko">

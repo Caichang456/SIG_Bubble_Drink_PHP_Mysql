@@ -90,7 +90,7 @@
 				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
-			<form method="POST" action="penting.php">
+			<form method="POST">
 				<tr>
 					<td><input type="text" name="txt_nama_toko" placeholder="Nama Toko"></td>
 					<td>
