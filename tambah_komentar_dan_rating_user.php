@@ -33,6 +33,19 @@
 			include"koneksi.php";
 			$id_komentar_dan_rating=$_GET['id_komentar_dan_rating'];
 			$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating where id_komentar_dan_rating='$id_komentar_dan_rating'");
+			while($d=mysqli_fecth_array($data)){ ?>
+				<form action="tambah_komentar.php" method="POST">
+					<table class="table">
+						<tr>
+							<td>
+								<input type="hidden" name="txt_id_komentar_dan_rating" value="<?php echo $d['id_komentar_dan_rating']; ?>">
+								<input type="hidden" name="txt_komentar_user" value="<?php echo $d['komentar_user']; ?>">
+							</td>
+							<td><input type="submit" name="submit" value="Simpan" class="btn btn-primary"></td>
+						</tr>
+					</table>
+				</form>
+			<?php }
 		?>
 	</body>
 </html>
