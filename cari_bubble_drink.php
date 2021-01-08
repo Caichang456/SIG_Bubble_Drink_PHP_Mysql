@@ -80,8 +80,8 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="ubah_bubble_drink.php?ubah_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								<a class="btn btn-primary" href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
 					<?php } } ?>
@@ -95,8 +95,8 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="ubah_bubble_drink.php?ubah_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_bubble_drink.php?hapus_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								<a class="btn btn-primary" href="ubah_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_bubble_drink.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
 				<?php } } ?>

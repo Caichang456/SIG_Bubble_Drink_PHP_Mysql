@@ -119,8 +119,8 @@
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?ubah_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
 					<?php } } ?>
@@ -134,8 +134,8 @@
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="ubah_lokasi.php?ubah_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
-								<a class="btn btn-danger" href="hapus_lokasi.php?hapus_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+								<a class="btn btn-primary" href="ubah_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>">Ubah</a>
+								<a class="btn btn-danger" href="hapus_lokasi.php?id_lokasi=<?php echo $d['id_lokasi']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
 					<?php } }

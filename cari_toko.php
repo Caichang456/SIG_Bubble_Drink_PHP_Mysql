@@ -129,7 +129,7 @@
 							<td><?php echo $d['alamat']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
+								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
 								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
@@ -144,7 +144,7 @@
 							<td><?php echo $d['alamat']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
-								<a class="btn btn-primary" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
+								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
 								<a class="btn btn-danger" href="hapus_toko.php?id_toko=<?php echo $d['id_toko']; ?>" onclick="return confirm('Yakin Hapus?')">Hapus</a>
 							</td>
 						</tr>
