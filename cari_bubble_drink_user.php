@@ -110,7 +110,7 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail Bubble Drink</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>
@@ -118,14 +118,15 @@
 					$nama=$_POST['txt_nama'];
 					$harga=$_POST['txt_harga'];
 					$diskon=$_POST['txt_diskon'];
-					$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where nama like '%$nama%' or harga like '%$harga%' or diskon like '%$diskon%'");
+					$toko=$_POST['s_toko'];
+					$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where nama like '%$nama%' or harga like '%$harga%' or diskon like '%$diskon%' or id_toko like '%$toko%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_bubble_drink']; ?></td>
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail Bubble Drink</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>
