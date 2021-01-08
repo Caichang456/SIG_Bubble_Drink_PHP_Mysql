@@ -40,7 +40,6 @@
 				<th>ID User</th>
 				<th>Rating</th>
 				<th>Komentar User</th>
-				<th>Aksi</th>
 			</tr>
 			<?php
 				include"koneksi.php";
@@ -62,9 +61,6 @@
 							<td><?php echo $d['user_name']; ?></td>
 							<td><?php echo $d['rating']; ?></td>
 							<td><?php echo $d['komentar_user']; ?></td>
-							<td>
-								<a class="btn btn-danger" href="hapus_komentar_dan_rating.php?id_komentar_dan_rating=<?php echo $d['id_komentar_dan_rating']; ?>">Hapus</a>
-							</td>
 						</tr>
 					<?php }} ?>
 				<?php if(isset($_POST['submit'])){
@@ -77,9 +73,6 @@
 							<td><?php echo $d['user_name']; ?></td>
 							<td><?php echo $d['rating']; ?></td>
 							<td><?php echo $d['komentar_user']; ?></td>
-							<td>
-								<a class="btn btn-danger" href="hapus_komentar_dan_rating.php?id_komentar_dan_rating=<?php echo $d['id_komentar_dan_rating']; ?>">Hapus</a>
-							</td>
 						</tr>
 					<?php }} ?>
 		</table>
