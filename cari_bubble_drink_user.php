@@ -119,7 +119,7 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>
@@ -135,7 +135,7 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>
