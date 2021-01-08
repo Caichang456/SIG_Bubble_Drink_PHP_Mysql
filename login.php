@@ -8,6 +8,7 @@
 	if($cek>0){
 		$_SESSION['txt_email']=$email;
 		$_SESSION['txt_password']=$password;
+		$_SESSION['txt_user_name']=$user_name;
 		header("location:cari_bubble_drink_user.php");
 	}
 	else{

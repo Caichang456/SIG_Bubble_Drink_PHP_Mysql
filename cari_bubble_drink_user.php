@@ -1,8 +1,17 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['txt_email'])){
+		echo"Belum login";
+		exit;
+	}
+	$email=$_SESSION['txt_email'];
+	$user_name=$_SESSION['txt_user_name'];
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Cari Bubble Drink User</title>
-				<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
 		<script type="text/javascript" src="jquery-3.5.1.js"></script>
 		<script type="text/javascript" src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 		<style type="text/css">
