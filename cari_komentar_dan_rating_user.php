@@ -1,12 +1,4 @@
-<?php
-	session_start();
-	if(!isset($_SESSION['txt_email'])){
-		echo"Belum login";
-		exit;
-	}
-	$email=$_SESSION['txt_email'];
-	$user_name=$_SESSION['txt_user_name'];
-?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,7 +41,7 @@
 					$posisi = ($halaman-1) * $batas;
 				}
 				$id_bubble_drink=$_GET['id_bubble_drink'];
-				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user where id_bubble_drink='$id_bubble_drink'");
+				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user");
 				while($d=mysqli_fetch_array($data)){ ?>
 					<tr>
 						<td><?php echo $d['nama_bubble_drink']; ?></td>

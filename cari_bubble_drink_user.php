@@ -1,12 +1,4 @@
-<?php
-	session_start();
-	if(!isset($_SESSION['txt_email'])){
-		echo"Belum login";
-		exit;
-	}
-	$email=$_SESSION['txt_email'];
-	$user_name=$_SESSION['txt_user_name'];
-?>
+
 <!DOCTYPE html>
 <html>
 	<head>

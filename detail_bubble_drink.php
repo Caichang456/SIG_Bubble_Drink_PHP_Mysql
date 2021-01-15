@@ -14,7 +14,7 @@
 				height: 500px;
 			}
 		</style>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTYo0s-mGdijeuL6BfruBt3T_FG4o9wM&callback=initialize" async defer></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAme5zVA4mLFAQmGMGQqp6KU0kKwP1BUEk&callback=initialize" async defer></script>
 		<script type="text/javascript">
 			var marker;
 			function initialize(){
@@ -110,6 +110,7 @@
 						<td><?php echo $d2['nama_bubble_drink']; ?></td>
 						<td><?php echo $d2['rating']; ?></td>
 						<td><?php echo $d2['komentar_user']; ?></td>
+						<td><a href="ubah_komentar_dan_rating.php?id_komentar_dan_rating=<?php echo $d2['id_komentar_dan_rating'];?>">Ubah</a></td>
 					</tr>
 				<?php }
 			?>
