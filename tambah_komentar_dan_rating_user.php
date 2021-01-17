@@ -1,12 +1,4 @@
-<?php
-	session_start();
-	if(!isset($_SESSION['txt_email'])){
-		echo"Belum login";
-		exit;
-	}
-	$email=$_SESSION['txt_email'];
-	$user_name=$_SESSION['txt_user_name'];
-?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,7 +26,7 @@
 			$id_komentar_dan_rating=$_GET['id_komentar_dan_rating'];
 			$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating where id_komentar_dan_rating='$id_komentar_dan_rating'");
 			while($d=mysqli_fecth_array($data)){ ?>
-				<form action="tambah_komentar.php" method="POST">
+				<form action="ubah_komentar.php" method="POST">
 					<table class="table">
 						<tr>
 							<td>

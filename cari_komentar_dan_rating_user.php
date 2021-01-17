@@ -48,9 +48,7 @@
 						<td><?php echo $d['user_name']; ?></td>
 						<td><?php echo $d['rating']; ?></td>
 						<td><?php echo $d['komentar_user']; ?></td>
-						<td>
-							<a class="btn btn-danger" href="tambah_komentar_dan_rating_user.php?id_komentar_dan_rating=<?php echo $d['id_komentar_dan_rating']; ?>">Hapus</a>
-						</td>
+						<td><a href="tambah_komentar_dan_rating.php?id_komentar_dan_rating=<?php echo $d['id_komentar_dan_rating']; ?>">Tambah</a></td>
 					</tr>
 				<?php } ?>
 		</table>
