@@ -24,14 +24,23 @@
 		<?php
 			include"koneksi.php";
 			$id_komentar_dan_rating=$_GET['id_komentar_dan_rating'];
-			$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating where id_komentar_dan_rating='$id_komentar_dan_rating'");
-			while($d=mysqli_fecth_array($data)){ ?>
+			$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user where id_komentar_dan_rating like '%$id_komentar_dan_rating%'");
+			while($d2=mysqli_fetch_array($data2)){ ?>
 				<form action="ubah_komentar.php" method="POST">
 					<table class="table">
 						<tr>
 							<td>
-								<input type="hidden" name="txt_id_komentar_dan_rating" value="<?php echo $d['id_komentar_dan_rating']; ?>">
-								<input type="hidden" name="txt_komentar_user" value="<?php echo $d['komentar_user']; ?>">
+								<input type="hidden" name="txt_id_komentar_dan_rating" value="<?php echo $d2['id_komentar_dan_rating']; ?>">
+								<input type="text" name="txt_komentar_user" value="<?php echo $d2['komentar_user']; ?>">
+							</td>
+							<td>
+								<select name="s_rating">
+									<?php
+										for($indeks=1;$indeks<=5;$indeks++){
+											echo "<option value=\"$indeks\">$indeks</option>";
+										}
+									?>
+								</select>
 							</td>
 							<td><input type="submit" name="submit" value="Simpan" class="btn btn-primary"></td>
 						</tr>

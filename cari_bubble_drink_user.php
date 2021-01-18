@@ -1,6 +1,4 @@
-<?php
-	echo "<a href='https://www.google.com'>Tampil</a>";
-?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -52,7 +50,7 @@
 						$alamat=$d['alamat'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,$nama_lokasi<br>$nama_toko<br>$alamat'.'<a href='https://www.google.com'>Tampil</a>');\n");
+						echo ("addMarker($latitude,$longtitude,'$nama_lokasi<br>$nama_toko<br>$latitude<br>$longtitude');\n");
 					}
 				?>
 				google.maps.event.addDomListener(window, 'load', initialize);
@@ -67,7 +65,7 @@
 						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Komentar</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="logout.php">Logout</a>
+						<a class="nav-link" href="profil.php">Profil</a>
 					</li>
 				</ul>
 			</div>
