@@ -29,6 +29,11 @@
 						infoWindow.setContent(html);
 						infoWindow.open(map, marker);
 					});
+					google.maps.event.addListener(marker, 'dblclick', function(){
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+						window.location.href = marker.url;
+					});
 				}
 				function addMarker(latitude, longtitude, info){
 					var pt = new google.maps.LatLng(latitude, longtitude);
@@ -36,6 +41,7 @@
 					var marker = new google.maps.Marker({
 						map: map,
 						position: pt,
+						url: 'https://www.google.com',
 						title: "Klik untuk mengetahui lebih lanjut"
 					});
 					map.fitBounds(bounds);
@@ -65,7 +71,7 @@
 						<a class="nav-link" href="cari_bubble_drink_user.php">Bubble Drink --> Komentar</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="profil.php">Profil</a>
+						<a class="nav-link" href="logout.php">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -111,7 +117,7 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>
@@ -127,7 +133,7 @@
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php?id_bubble_drink=<?php echo $d['id_bubble_drink']; ?>">Detail</a></td>
+							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php">Detail</a></td>
 						</tr>
 					<?php }
 				} ?>

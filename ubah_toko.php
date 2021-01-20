@@ -34,7 +34,7 @@
 			$id_toko=$_GET['id_toko'];
 			$data=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi where id_toko='$id_toko'");
 			while($d=mysqli_fetch_array($data)){ ?>
-				<form action="update_toko.php" method="POST">
+				<form method="POST" action="update_toko.php">
 					<table class="table">
 						<tr>
 							<td>
@@ -46,7 +46,7 @@
 									<?php
 										$data2=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi");
 										while($d2=mysqli_fetch_array($data2)){ ?>
-											<option value="<?=$d['id_lokasi']; ?>"><?=$d['nama_lokasi']; ?></option>
+											<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['nama_lokasi']; ?></option>
 										<?php }
 									?>
 								</select>

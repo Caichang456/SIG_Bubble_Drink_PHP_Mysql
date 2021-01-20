@@ -93,7 +93,7 @@
 			<form method="POST">
 				<tr>
 					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
-					<th><textarea name="Alamat" placeholder="Alamat"></textarea></th>
+					<th><input type="text" name="txt_alamat_lokasi" placeholder="Alamat Lokasi"></th>
 					<th><input type="text" name="txt_longtitude" placeholder="Longtitude"></th>
 					<th><input type="text" name="txt_latitude" placeholder="Latitude"></th>
 					<th><input class="btn btn-primary" type="submit" name="simpan_lokasi" value="Simpan"></th>
@@ -115,7 +115,7 @@
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['alamat_lokasi']; ?></td>
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
 							<td>
@@ -130,7 +130,7 @@
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['alamat_lokasi']; ?></td>
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
 							<td>
@@ -141,11 +141,12 @@
 					<?php } }
 			?>
 			<?php if(isset($_POST['simpan_lokasi'])){
-						$nama_lokasi=$_POST['nama_lokasi'];
-		$alamat=$_POST['txt_alamat'];
-		$latitude=$_POST['latitude'];
-		$longtitude=$_POST['longtitude'];
-		mysqli_query($koneksi,"insert into tb_lokasi(id_lokasi,nama_lokasi,alamat,latitude,longtitude) values('','$nama_lokasi','$alamat','$latitude','$longtitude')");
+				include"koneksi.php";
+		$nama_lokasi=$_POST['txt_nama_lokasi'];
+		$alamat_lokasi=$_POST['txt_alamat_lokasi'];
+		$latitude=$_POST['txt_latitude'];
+		$longtitude=$_POST['txt_longtitude'];
+		mysqli_query($koneksi,"INSERT INTO tb_lokasi(nama_lokasi,alamat_lokasi,latitude,longtitude) VALUES('$nama_lokasi','$alamat_lokasi','$latitude','$longtitude')");
 		header("location:cari_lokasi.php");
 
 				 }

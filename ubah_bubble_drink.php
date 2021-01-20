@@ -32,7 +32,7 @@
 		<?php
 			include"koneksi.php";
 			$id_bubble_drink=$_GET['id_bubble_drink'];
-			$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where id_bubble_drink='$id_bubble_drink'");
+			$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where id_bubble_drink like '%$id_bubble_drink%'");
 			while($d=mysqli_fetch_array($data)){ ?>
 				<form action="update_bubble_drink.php" method="POST">
 					<table class="table">

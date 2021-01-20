@@ -7,7 +7,7 @@
 		<h1>Ubah Komentar dan Rating</h1>
 		<?php
 			include "koneksi.php";
-			$id_komentar=$_GET['id_komentar'];
+			$id_komentar_dan_user=$_GET['id_komentar_dan_rating'];
 			$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
 			while($d=mysqli_fetch_array($data)){ ?>
 				<form method="POST" action="ubah_komentar_2.php">

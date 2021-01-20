@@ -55,8 +55,8 @@
 						</select>
 					</th>
 					<th><input type="text" name="txt_nama_bubble_drink" placeholder="Nama Bubble Drink"></th>
-					<th><input type="text" name="txt_harga" placeholder="Harga"></th>
-					<th><input type="text" name="txt_diskon" placeholder="Diskon"></th>
+					<th><input type="text" name="txt_harga_bubble_drink" placeholder="Harga"></th>
+					<th><input type="text" name="txt_diskon_bubble_drink" placeholder="Diskon"></th>
 					<th><input type="submit" name="simpan_bubble_drink" value="Simpan" class="btn btn-primary"></th>
 				</tr>
 			</form>
@@ -87,7 +87,7 @@
 					<?php } } ?>
 				<?php if(isset($_POST['submit'])){
 					$cari_bubble_drink=$_POST['txt_cari_bubble_drink'];
-					$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where nama like'%$cari_bubble_drink%' or harga like'%$cari_bubble_drink%' or diskon like '%$cari_bubble_drink%'");
+					$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko where nama_bubble_drink like'%$cari_bubble_drink%' or harga_bubble_drink like'%$cari_bubble_drink%' or diskon_bubble_drink like '%$cari_bubble_drink%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_toko']; ?></td>
@@ -101,13 +101,12 @@
 						</tr>
 				<?php } } ?>
 				<?php if(isset($_POST['simpan_bubble_drink'])){
-							$nama_bubble_drink=$_POST['txt_nama_bubble_drink'];
-		$harga_bubble_drink=$_POST['txt_harga_bubble_drink'];
-		$diskon_bubble_drink=$_POST['txt_nama_bubble_drink'];
+		$nama_bubble_drink=$_POST['txt_nama_bubble_drink'];
+		$harga_bubble_drink=(int)$_POST['txt_harga_bubble_drink'];
+		$diskon_bubble_drink=$_POST['txt_diskon_bubble_drink'];
 		$toko=$_POST['s_toko'];
-		mysqli_query($koneksi,"insert into tb_bubble_drink(id_bubble_drink,id_toko,nama_bubble_drink,harga_bubble_drink,diskon_bubble_drink) values('','$toko','$nama_bubble_drink','$harga_bubble_drink','$diskon_bubble_drink')");
+		mysqli_query($koneksi,"insert into tb_bubble_drink(id_toko,nama_bubble_drink,harga_bubble_drink,diskon_bubble_drink) values('$toko','$nama_bubble_drink','$harga_bubble_drink','$diskon_bubble_drink')");
 		header("location:cari_bubble_drink.php");
-
 					
 				}  ?>
 		</table>

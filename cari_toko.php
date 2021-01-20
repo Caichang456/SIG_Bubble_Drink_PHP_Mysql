@@ -99,7 +99,7 @@
 								include"koneksi.php";
 								$data2=mysqli_query($koneksi,"select * from tb_lokasi");
 								while($d2=mysqli_fetch_array($data2)){ ?>
-									<option value="<?=$d2['id_lokasi'] ?>"><?=$d2['nama_lokasi'] ?></option>
+									<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['nama_lokasi']; ?></option>
 								<?php }
 							?>
 						</select>
@@ -126,7 +126,7 @@
 						<tr>
 							<td><?php echo $d['nama_toko']; ?></td>
 							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['alamat_toko']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
 								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
@@ -141,7 +141,7 @@
 						<tr>
 							<td><?php echo $d['nama_toko']; ?></td>
 							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat']; ?></td>
+							<td><?php echo $d['alamat_toko']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
 								<a class="btn btn-primary" href="ubah_toko.php?id_toko=<?php echo $d['id_toko']; ?>">Ubah</a>
@@ -150,11 +150,12 @@
 						</tr>
 					<?php } } ?>
 					<?php if(isset($_POST['simpan_toko'])){
+						include "koneksi.php";
 						$nama_toko=$_POST['txt_nama_toko'];
 		$lokasi=$_POST['s_lokasi'];
 		$alamat=$_POST['txt_alamat'];
 		$nomor_handphone=$_POST['txt_nomor_handphone'];
-		mysqli_query($koneksi,"insert into tb_toko(id_toko,id_lokasi,nama_toko,alamat,nomor_handphone) values('','$lokasi','$nama_toko','$alamat','$nomor_handphone')");
+		mysqli_query($koneksi,"insert into tb_toko(id_lokasi,nama_toko,alamat_toko,nomor_handphone) values('$lokasi','$nama_toko','$alamat','$nomor_handphone')");
 		header("location:cari_toko.php");
 					 } ?>
 

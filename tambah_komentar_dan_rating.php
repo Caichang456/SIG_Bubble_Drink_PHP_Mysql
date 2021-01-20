@@ -1,4 +1,6 @@
-
+<?php
+	include"koneksi.php";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,17 +23,31 @@
 			</div>
 		</nav>
 		<h1>Cari Komentar dan Rating</h1>
-		<?php
-			include"koneksi.php";
-			$id_komentar_dan_rating=$_GET['id_komentar_dan_rating'];
-			$data2=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user where id_komentar_dan_rating like '%$id_komentar_dan_rating%'");
-			while($d2=mysqli_fetch_array($data2)){ ?>
 				<form action="ubah_komentar.php" method="POST">
 					<table class="table">
 						<tr>
 							<td>
-								<input type="hidden" name="txt_id_komentar_dan_rating" value="<?php echo $d2['id_komentar_dan_rating']; ?>">
-								<input type="text" name="txt_komentar_user" value="<?php echo $d2['komentar_user']; ?>">
+								<input type="text" name="txt_komentar_user" placeholder="Komentar User">
+							</td>
+							<td>
+								<select name="s_toko">
+									<?php
+										$data3=mysqli_query($koneksi,"select * from tb_toko");
+										while($d3=mysqli_fetch_array($data3)){ ?>
+											<option value="<?php echo $d3['id_toko']; ?>"><?php echo $d3['nama_toko']; ?></option>
+										<?php }
+									?>
+								</select>
+							</td>
+							<td>
+								<select name="s_bubble_drink">
+									<?php
+										$data4=mysqli_query($koneksi,"select * from tb_bubble_drink");
+										while($d4=mysqli_fetch_array($data4)){ ?>
+											<option value="<?php echo $d4['id_bubble_drink']; ?>"><?php echo $d4['nama_bubble_drink']; ?></option>
+										<?php }
+									?>
+								</select>
 							</td>
 							<td>
 								<select name="s_rating">
@@ -46,7 +62,6 @@
 						</tr>
 					</table>
 				</form>
-			<?php }
-		?>
+			
 	</body>
 </html>
