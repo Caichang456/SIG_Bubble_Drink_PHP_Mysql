@@ -41,22 +41,20 @@
 					var marker = new google.maps.Marker({
 						map: map,
 						position: pt,
-						url: 'https://www.google.com',
-						title: "Klik untuk mengetahui lebih lanjut"
+						title: "Klik untuk mengetahui lebih lanjut",
+						url: ''
 					});
 					map.fitBounds(bounds);
 					bindInfoWindow(marker, map, infoWindow, info);
 				}
 				<?php
 					include "koneksi.php";
-					$data=mysqli_query($koneksi,"select * from tb_lokasi as a inner join tb_toko as b on a.id_lokasi=b.id_lokasi");
+					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){
-						$nama_lokasi=$d['nama_lokasi'];
-						$nama_toko=$d['nama_toko'];
-						$alamat=$d['alamat'];
+						$alamat_lokasi=$d['alamat_lokasi'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi<br>$nama_toko<br>$latitude<br>$longtitude');\n");
+						echo ("addMarker($latitude,$longtitude,'$alamat_lokasi');\n");
 					}
 				?>
 				google.maps.event.addDomListener(window, 'load', initialize);
@@ -95,7 +93,7 @@
 							?>
 						</select>
 					</td>
-					<td><input class="btn btn-primary" type="submit" name="submit" value="Cari Bubble Drink"></td>
+					<td><input class="btn btn-primary" type="submit" name="submit" value="Cari"></td>
 				</tr>
 			</table>
 		</form>
@@ -116,7 +114,7 @@
 							<td><?php echo $d['nama_bubble_drink']; ?></td>
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
-							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['nama_toko']; ?> <br> <?php echo $d['alamat_toko']; ?></td>
 							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php">Detail</a></td>
 						</tr>
 					<?php }
@@ -132,7 +130,7 @@
 							<td><?php echo $d['nama_bubble_drink']; ?></td>
 							<td><?php echo $d['harga_bubble_drink']; ?></td>
 							<td><?php echo $d['diskon_bubble_drink']; ?></td>
-							<td><?php echo $d['nama_toko']; ?></td>
+							<td><?php echo $d['nama_toko']; ?> <br> <?php echo $d['alamat_toko']; ?></td>
 							<td><a class="btn btn-primary" href="cari_komentar_dan_rating_user.php">Detail</a></td>
 						</tr>
 					<?php }

@@ -46,12 +46,12 @@
 									<?php
 										$data2=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi");
 										while($d2=mysqli_fetch_array($data2)){ ?>
-											<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['nama_lokasi']; ?></option>
+											<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['alamat_lokasi']; ?></option>
 										<?php }
 									?>
 								</select>
 							</td>
-							<td><input type="text" name="txt_alamat" value="<?php echo $d['alamat']; ?>"></td>
+							<td><input type="text" name="txt_alamat" value="<?php echo $d['alamat_toko']; ?>"></td>
 							<td><input type="text" name="txt_nomor_handphone" value="<?php echo $d['nomor_handphone']; ?>"></td>
 							<td><input type="submit" name="submit" value="Simpan" class="btn btn-primary"></td>
 						</tr>

@@ -6,9 +6,6 @@
 	$data=mysqli_query($koneksi,"SELECT * FROM tb_user WHERE email='$email' and password='$password'");
 	$cek=mysqli_num_rows($data);
 	if($cek>0){
-		$_SESSION['txt_email']=$email;
-		$_SESSION['txt_password']=$password;
-		$_SESSION['txt_user_name']=$user_name;
 		header("location:cari_bubble_drink_user.php");
 	}
 	else{

@@ -11,7 +11,7 @@
 				height: 500px;
 			}
 		</style>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAme5zVA4mLFAQmGMGQqp6KU0kKwP1BUEk&callback=initialize" async defer></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTYo0s-mGdijeuL6BfruBt3T_FG4o9wM&callback=initialize" async defer></script>
 		<script type="text/javascript">
 			var marker;
 			function initialize(){
@@ -28,6 +28,11 @@
 						infoWindow.setContent(html);
 						infoWindow.open(map, marker);
 					});
+					google.maps.event.addListener(marker, 'dblclick', function(){
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+						window.location.href = marker.url;
+					});
 				}
 				function addMarker(latitude, longtitude, info){
 					var pt = new google.maps.LatLng(latitude, longtitude);
@@ -35,7 +40,6 @@
 					var marker = new google.maps.Marker({
 						map: map,
 						position: pt,
-						title: "Klik untuk mengetahui lebih lanjut"
 					});
 					map.fitBounds(bounds);
 					bindInfoWindow(marker, map, infoWindow, info);
@@ -44,11 +48,10 @@
 					include "koneksi.php";
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){
-						$nama_lokasi=$d['nama_lokasi'];
-						$alamat=$d['alamat'];
+						$alamat_lokasi=$d['alamat_lokasi'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi');\n");
+						echo ("addMarker($latitude,$longtitude,'$alamat_lokasi');\n");
 					}
 				?>
 				google.maps.event.addDomListener(window, 'load', initialize);
@@ -77,6 +80,7 @@
 				</ul>
 			</div>
 		</nav>
+		<div id="map-canvas"></div>
 		<h1>Cari Lokasi</h1>
 		<form method="POST">
 			<input type="text" name="txt_cari_lokasi" placeholder="Cari apa?">
@@ -84,15 +88,13 @@
 		</form>
 		<table class="table">
 			<tr>
-				<th>Nama Lokasi</th>
-				<th>Alamat</th>
+				<th>Alamat Lokasi</th>
 				<th>Longtitude</th>
 				<th>Latitude</th>
 				<th>Aksi</th>
 			</tr>
 			<form method="POST">
 				<tr>
-					<th><input type="text" name="txt_nama_lokasi" placeholder="Nama Lokasi"></th>
 					<th><input type="text" name="txt_alamat_lokasi" placeholder="Alamat Lokasi"></th>
 					<th><input type="text" name="txt_longtitude" placeholder="Longtitude"></th>
 					<th><input type="text" name="txt_latitude" placeholder="Latitude"></th>
@@ -101,21 +103,12 @@
 			</form>
 			<?php
 				include"koneksi.php";
-				$batas=10;
-				$halaman = @$_GET['halaman'];
-				if(empty($halaman)){
-					$posisi = 0;
-					$halaman = 1;
-				}
-				else{
-					$posisi = ($halaman-1) * $batas;
-				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
-							<td><?php echo $d['alamat_lokasi']; ?></td>
+							<td><?php echo $d
+							['alamat_lokasi']; ?></td>
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
 							<td>
@@ -129,7 +122,6 @@
 					$data=mysqli_query($koneksi,"select * from tb_lokasi where nama_lokasi like '%$lokasi%' or alamat like '%$lokasi%' or nomor_handphone like '%$lokasi%' or longtitude like '%$lokasi%' or latitude like '%$lokasi%'");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
-							<td><?php echo $d['nama_lokasi']; ?></td>
 							<td><?php echo $d['alamat_lokasi']; ?></td>
 							<td><?php echo $d['longtitude']; ?></td>
 							<td><?php echo $d['latitude']; ?></td>
@@ -142,30 +134,20 @@
 			?>
 			<?php if(isset($_POST['simpan_lokasi'])){
 				include"koneksi.php";
-		$nama_lokasi=$_POST['txt_nama_lokasi'];
 		$alamat_lokasi=$_POST['txt_alamat_lokasi'];
 		$latitude=$_POST['txt_latitude'];
 		$longtitude=$_POST['txt_longtitude'];
-		mysqli_query($koneksi,"INSERT INTO tb_lokasi(nama_lokasi,alamat_lokasi,latitude,longtitude) VALUES('$nama_lokasi','$alamat_lokasi','$latitude','$longtitude')");
+		$cek=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM tb_lokasi WHERE longtitude like '$longtitude' AND latitude like '%$latitude%'"));
+	if($cek>0){
+		echo "Longtitude dan Latitude yang anda masukkan sudah ada di database";
+	}
+	else{
+		echo "Data berhasil di daftar";
+		mysqli_query($koneksi,"INSERT INTO tb_lokasi(alamat_lokasi,latitude,longtitude) VALUES('$alamat_lokasi','$latitude','$longtitude')");
 		header("location:cari_lokasi.php");
-
+	}
 				 }
 			?>
 		</table>
-		<?php
-			$data2=mysqli_query($koneksi,"select * from tb_lokasi");
-			$jmldata=mysqli_num_rows($data2);
-			$jmlhalaman=ceil($jmldata/$batas);
-		?>
-		<div class="text-center">
-			<ul class="pagination">
-				<?php
-					for($i=1;$i<=$jmlhalaman;$i++){
-						echo "<li class='page-item'><a class='page-link' href='cari_lokasi.php?halaman=$i'>$i</a></li>";
-					}
-				?>
-			</ul>
-		</div>
-		<div id="map-canvas"></div>
 	</body>
 </html>

@@ -11,7 +11,7 @@
 				height: 500px;
 			}
 		</style>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAme5zVA4mLFAQmGMGQqp6KU0kKwP1BUEk&callback=initialize" async defer></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTYo0s-mGdijeuL6BfruBt3T_FG4o9wM&callback=initialize" async defer></script>
 		<script type="text/javascript">
 			var marker;
 			function initialize(){
@@ -23,32 +23,35 @@
 				var map = new google.maps.Map(mapCanvas, mapOptions);
 				var infoWindow = new google.maps.InfoWindow();
 				var bounds = new google.maps.LatLngBounds();
-				function addMarker(latitude, longtitude, info){
-					var pt = new google.maps.LatLng(latitude, longtitude);
-					bounds.extend(pt);
-					var marker = new google.maps.Marker({
-						map: map,
-						position: pt
-					});
-					map.fitBounds(bounds);
-					bindInfoWindow(marker, map, infoWindow, info);
-				}
 				function bindInfoWindow(marker, map, infoWindow, html){
 					google.maps.event.addListener(marker, 'click', function(){
 						infoWindow.setContent(html);
 						infoWindow.open(map, marker);
 					});
-				}// https://invoice.xendit.co/od/21-day-rapid-sales-program
+					google.maps.event.addListener(marker, 'dblclick', function(){
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+						window.location.href = marker.url;
+					});
+				}
+				function addMarker(latitude, longtitude, info){
+					var pt = new google.maps.LatLng(latitude, longtitude);
+					bounds.extend(pt);
+					var marker = new google.maps.Marker({
+						map: map,
+						position: pt,
+					});
+					map.fitBounds(bounds);
+					bindInfoWindow(marker, map, infoWindow, info);
+				}
 				<?php
 					include "koneksi.php";
-					$data=mysqli_query($koneksi,"select * from tb_lokasi as a inner join tb_toko as b on a.id_lokasi=b.id_lokasi");
+					$data=mysqli_query($koneksi,"select * from tb_lokasi");
 					while($d=mysqli_fetch_array($data)){
-						$nama_lokasi=$d['nama_lokasi'];
-						$nama_toko=$d['nama_toko'];
-						$alamat=$d['alamat'];
+						$alamat_lokasi=$d['alamat_lokasi'];
 						$longtitude=$d['longtitude'];
 						$latitude=$d['latitude'];
-						echo ("addMarker($latitude,$longtitude,'$nama_lokasi<br>$nama_toko<br>$latitude<br>$longtitude');\n");
+						echo ("addMarker($latitude,$longtitude,'$alamat_lokasi');\n");
 					}
 				?>
 				google.maps.event.addDomListener(window, 'load', initialize);
@@ -85,8 +88,8 @@
 		<table class="table">
 			<tr>
 				<th>Nama Toko</th>
-				<th>Nama Lokasi</th>
-				<th>Alamat</th>
+				<th>Alamat Lokasi</th>
+				<th>Alamat Toko</th>
 				<th>Nomor Handphone</th>
 				<th>Aksi</th>
 			</tr>
@@ -99,7 +102,7 @@
 								include"koneksi.php";
 								$data2=mysqli_query($koneksi,"select * from tb_lokasi");
 								while($d2=mysqli_fetch_array($data2)){ ?>
-									<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['nama_lokasi']; ?></option>
+									<option value="<?=$d2['id_lokasi']; ?>"><?=$d2['alamat_lokasi']; ?></option>
 								<?php }
 							?>
 						</select>
@@ -111,21 +114,12 @@
 			</form>
 			<?php
 				include"koneksi.php";
-				$batas=10;
-				$halaman = @$_GET['halaman'];
-				if(empty($halaman)){
-					$posisi = 0;
-					$halaman = 1;
-				}
-				else{
-					$posisi = ($halaman-1) * $batas;
-				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_toko as a inner join tb_lokasi as b on a.id_lokasi=b.id_lokasi");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat_lokasi']; ?></td>
 							<td><?php echo $d['alamat_toko']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
@@ -140,7 +134,7 @@
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['nama_toko']; ?></td>
-							<td><?php echo $d['nama_lokasi']; ?></td>
+							<td><?php echo $d['alamat_lokasi']; ?></td>
 							<td><?php echo $d['alamat_toko']; ?></td>
 							<td><?php echo $d['nomor_handphone']; ?></td>
 							<td>
@@ -161,20 +155,5 @@
 
 			?>
 		</table>
-		<?php
-			$data2=mysqli_query($koneksi,"select * from tb_toko");
-			$jmldata=mysqli_num_rows($data2);
-			$jmlhalaman=ceil($jmldata/$batas);
-		?>
-		<div class="text-center">
-			<ul class="pagination">
-				<?php
-					for($i=1;$i<=$jmlhalaman;$i++){
-						echo "<li class='page-item'><a class='page-link' href='cari_toko.php?halaman=$i'>$i</a></li>";
-					}
-				?>
-			</ul>
-		</div>
-		<div id="map-canvas"></div>
 	</body>
 </html>

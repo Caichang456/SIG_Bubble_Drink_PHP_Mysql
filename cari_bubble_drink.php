@@ -62,15 +62,6 @@
 			</form>
 			<?php
 				include"koneksi.php";
-				$batas=10;
-				$halaman = @$_GET['halaman'];
-				if(empty($halaman)){
-					$posisi = 0;
-					$halaman = 1;
-				}
-				else{
-					$posisi = ($halaman-1) * $batas;
-				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_bubble_drink as a inner join tb_toko as b on a.id_toko=b.id_toko");
 					while($d=mysqli_fetch_array($data)){ ?>
@@ -105,24 +96,9 @@
 		$harga_bubble_drink=(int)$_POST['txt_harga_bubble_drink'];
 		$diskon_bubble_drink=$_POST['txt_diskon_bubble_drink'];
 		$toko=$_POST['s_toko'];
-		mysqli_query($koneksi,"insert into tb_bubble_drink(id_toko,nama_bubble_drink,harga_bubble_drink,diskon_bubble_drink) values('$toko','$nama_bubble_drink','$harga_bubble_drink','$diskon_bubble_drink')");
+		mysqli_query($koneksi,"INSERT INTO tb_bubble_drink(id_toko,nama_bubble_drink,harga_bubble_drink,diskon_bubble_drink) VALUES('$toko','$nama_bubble_drink','$harga_bubble_drink','$diskon_bubble_drink')");
 		header("location:cari_bubble_drink.php");
-					
 				}  ?>
 		</table>
-		<?php
-			$data2=mysqli_query($koneksi,"select * from tb_bubble_drink");
-			$jmldata=mysqli_num_rows($data2);
-			$jmlhalaman=ceil($jmldata/$batas);
-		?>
-		<div class="text-center">
-			<ul class="pagination">
-				<?php
-					for($i=1;$i<=$jmlhalaman;$i++){
-						echo "<li class='page-item'><a class='page-link' href='cari_bubble_drink.php?halaman=$i'>$i</a></li>";
-					}
-				?>
-			</ul>
-		</div>
 	</body>
 </html>

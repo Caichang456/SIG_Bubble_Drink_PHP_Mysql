@@ -24,29 +24,20 @@
 		<a href="tambah_komentar_dan_rating.php">Tambah</a>
 		<table class="table">
 			<tr>
-				<th>ID Bubble Drink</th>
-				<th>ID User</th>
+				<th>Nama Bubble Drink</th>
+				<th>Toko</th>
 				<th>Rating</th>
 				<th>Komentar User</th>
 			</tr>
 			<?php
 				include"koneksi.php";
-				$batas=10;
-				$halaman = @$_GET['halaman'];
-				if(empty($halaman)){
-					$posisi = 0;
-					$halaman = 1;
-				}
-				else{
-					$posisi = ($halaman-1) * $batas;
-				}
-				$data=mysqli_query($koneksi,"select * from tb_komentar_dan_rating as a inner join tb_bubble_drink as b on a.id_bubble_drink=b.id_bubble_drink inner join tb_user as c on a.id_user=c.id_user");
-				while($d=mysqli_fetch_array($data)){ ?>
+				$data3=mysqli_query($koneksi,"select * from tb_komentar_dan_rating");
+				while($d3=mysqli_fetch_array($data3)){ ?>
 					<tr>
-						<td><?php echo $d['nama_bubble_drink']; ?></td>
-						<td><?php echo $d['user_name']; ?></td>
-						<td><?php echo $d['rating']; ?></td>
-						<td><?php echo $d['komentar_user']; ?></td>
+						<td><?php echo $d3['id_bubble_drink']; ?></td>
+						<td><?php echo $d3['id_toko']; ?></td>
+						<td><?php echo $d3['rating']; ?></td>
+						<td><?php echo $d3['komentar_user']; ?></td>
 					</tr>
 				<?php } ?>
 		</table>

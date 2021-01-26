@@ -37,25 +37,18 @@
 			<tr>
 				<th>Email</th>
 				<th>Username</th>
+				<th>Status</th>
 				<th>Aksi</th>
 			</tr>
 			<?php
 				include "koneksi.php";
-				$batas=10;
-				$halaman = @$_GET['halaman'];
-				if(empty($halaman)){
-					$posisi = 0;
-					$halaman = 1;
-				}
-				else{
-					$posisi = ($halaman-1) * $batas;
-				}
 				if(!isset($_POST['submit'])){
 					$data=mysqli_query($koneksi,"select * from tb_user");
 					while($d=mysqli_fetch_array($data)){ ?>
 						<tr>
 							<td><?php echo $d['email']; ?></td>
 							<td><?php echo $d['user_name']; ?></td>
+							<td><?php echo $d['blokir']; ?></td>
 							<td>
 								<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>" onclick="return confirm('Yakin Blokir?')">Blokir</a>
 							</td>
@@ -68,25 +61,12 @@
 							<tr>
 								<td><?php echo $d['email']; ?></td>
 								<td><?php echo $d['user_name']; ?></td>
+								<td><?php echo $d['blokir']; ?></td>
 								<td>
 									<a class="btn btn-danger" href="blokir_akun.php?id_user=<?php echo $d['id_user']; ?>" onclick="return confirm('Yakin Hapus?')">Blokir</a>
 								</td>
 						</tr>
 					<?php } }?> 
 		</table>
-		<?php
-			$data2=mysqli_query($koneksi,"select * from tb_lokasi");
-			$jmldata=mysqli_num_rows($data2);
-			$jmlhalaman=ceil($jmldata/$batas);
-		?>
-		<div class="text-center">
-			<ul class="pagination">
-				<?php
-					for($i=1;$i<=$jmlhalaman;$i++){
-						echo "<li class='page-item'><a class='page-link' href='cari_lokasi.php?halaman=$i'>$i</a></li>";
-					}
-				?>
-			</ul>
-		</div>
 	</body>
 </html>

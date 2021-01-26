@@ -39,12 +39,11 @@
 						<tr>
 							<td>
 								<input type="hidden" name="txt_id_lokasi" value="<?php echo $d['id_lokasi']; ?>">
-								<input type="text" name="txt_nama_lokasi" value="<?php echo $d['nama_lokasi']; ?>">
+								<input type="text" name="txt_alamaat" value="<?php echo $d['alamat_lokasi']; ?>">
 							</td>
-							<td><input type="text" name="txt_alamaat" value="<?php echo $d['alamat']; ?>"></td>
 							<td><input type="text" name="txt_longtitude" value="<?php echo $d['longtitude']; ?>"></td>
 							<td><input type="text" name="txt_latitude" value="<?php echo $d['latitude']; ?>"></td>
-							<td><input type="submit" name="submit" value="Simpan" class="btn btn-primary"></td>
+							<td><input type="submit" name="submit" value="Ubah" class="btn btn-primary"></td>
 						</tr>
 					</table>
 				</form>
